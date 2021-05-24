@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>saa</p>
+    <router-view />
   </div>
 </template>
 
