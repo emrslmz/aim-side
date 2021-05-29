@@ -1,7 +1,7 @@
 export default [{
     path: '/play',
-    name: 'Play',
-    component: () => import('@/modules/main/play/views/Play.vue'),
+    name: 'PlayHome',
+    component: () => import('@/modules/main/play/views/PlayHome.vue'),
     children: [
         // {
         //     path: '/profiles',

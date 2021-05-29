@@ -1,21 +1,20 @@
 <template>
-  <div>
-      <div class="d-flex justify-content-center align-items-center play-container">
-        <button class="btn">
-          <span class="button-valorant-inner">
-            <span class="button-valorant-slide"></span>
-            <span class="button-valorant-content">Start</span>
-          </span>
-        </button>
-      </div>
+  <div class="play-home-frame">
+    <game />
   </div>
 </template>
 
-<style scoped>
-.play-container{
-  min-height: 70vh;
-}
+<script>
 
+export default {
+  name: 'PlayHome',
+  components: {
+    Game: () => import('@/modules/main/play/components/Game.vue'),
+  },
+};
+</script>
+
+<style scoped>
 
 
 
@@ -41,7 +40,7 @@
 
   position: relative;
   padding: 8px;
-  width: 400px;
+  width: 300px;
   margin-bottom: 20px;
   text-transform: uppercase;
   font-weight: bold;
@@ -154,5 +153,4 @@
   --button-text-color-hover: #ece8e1;
   --button-bits-color-hover: #ece8e1;
 }
-
 </style>
