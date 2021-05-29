@@ -73,10 +73,10 @@ export default {
 
 <style scoped>
 .game-frame {
-  min-height: 85vh;
+  min-height: 90vh;
   width: 100%;
   background-color: #191919;
-  cursor: url('/assets/images/img/small_green_cross.png'), auto;
+  cursor: url('/assets/images/img/small_red_cross.png'), auto;
 
 }
 
