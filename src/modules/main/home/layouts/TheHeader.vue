@@ -74,7 +74,6 @@
 </template>
 
 <style scoped>
-
 .top-bar {
   border-top: 5px solid #d42053;
   border-right: none;

@@ -1,6 +1,8 @@
 <template>
-  <div class="play-home-frame">
-    <game />
+  <div>
+    <div class="play-home-frame">
+      <game />
+    </div>
   </div>
 </template>
 
@@ -15,6 +17,7 @@ export default {
 </script>
 
 <style scoped>
+
 
 
 
