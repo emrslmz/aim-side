@@ -2,7 +2,7 @@
   <div>
     <header>
       <div class="top-bar">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light text-white">
           <h5 class="pl-5"><i class="fas fa-crosshairs"></i> Aim Side</h5>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -74,6 +74,9 @@
 </template>
 
 <style scoped>
+nav {
+  background-color: #191919;
+}
 .top-bar {
   border-top: 5px solid #d42053;
   border-right: none;

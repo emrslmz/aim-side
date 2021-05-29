@@ -28,5 +28,18 @@ export default {
   width: 100%;
   background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
 }
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 20px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #000000;
+}
+
 </style>
 

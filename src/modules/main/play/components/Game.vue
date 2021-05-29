@@ -1,5 +1,8 @@
 <template>
- <div class="game-frame text-white" id="game-frame" @mousemove="updateCoordinates">
+ <div class="game-frame text-white" @mousemove="updateCoordinates">
+   <div align="right">
+     <top-bar />
+   </div>
     <div class="d-flex flex-column justify-content-center align-items-center">
 <!--     <h1 v-if="playTime > 0"> {{ playTime }}</h1>-->
 <!--      <h5>{{ play }}</h5>-->
@@ -25,6 +28,9 @@
 <script>
 export default {
   name: 'Game',
+  components: {
+    TopBar: () => import('@/modules/main/play/components/layouts/TopBar.vue'),
+  },
   data() {
     return {
       playTime: 3,
@@ -75,14 +81,16 @@ export default {
 .game-frame {
   min-height: 90vh;
   width: 100%;
-  background-color: #191919;
   cursor: url('/assets/images/img/small_red_cross.png'), auto;
-
+  background-image: url('/assets/images/img/backgrounds/split_2.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .ballon {
   position: absolute;
-  background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+  /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
   border-radius: 100px;
   width: 100px;
   height: 100px;
