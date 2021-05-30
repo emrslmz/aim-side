@@ -1,23 +1,19 @@
 <template>
   <div class="dead-bar-frame">
-    <img class="spray-picture" :src="'/assets/images/img/sprays/' + this.selectedSpray.url + this.selectedSpray.extension" />
+    <div>
+        <img v-if="selectedSpray.url"  class="spray-picture" :src="'/assets/images/img/sprays/' + this.selectedSpray.url + '.' + this.selectedSpray.extension"  />
+      </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   name: 'DeadBar',
   computed: {
     ...mapState('Shot', ['valoSprays', 'selectedSpray']),
   },
-  methods: {
-    ...mapActions('Shot', ['selectSpray']),
-  },
-  created() {
-    this.selectSpray();
-  }
 };
 </script>
 
@@ -32,6 +28,7 @@ export default {
   width: 100px;
   height: 100px;
   animation: spaceboots 5s infinite;
+  transition: 0.8s;
 }
 
 @keyframes spaceboots {

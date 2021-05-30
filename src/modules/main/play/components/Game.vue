@@ -65,9 +65,12 @@ export default {
   },
   computed: {
     ...mapState('Play', ['playData']),
+    ...mapState('Sound', ['selectedSoundData']),
   },
   methods: {
     ...mapActions('Play', ['beforeStartTimer', 'createCoordinate', 'nowStartTimer']),
+    ...mapActions('Shot', ['selectSpray']),
+    ...mapActions('Sound', ['playSound']),
 
     updateCoordinates(event) {
       this.playData.target.x = event.clientX;  //yatay 1850
@@ -75,10 +78,13 @@ export default {
     },
     clickItem() {
       const randomPoint = Math.floor(Math.random() * 10);
-      console.log(randomPoint);
+      // console.log(randomPoint);
       this.playData.point += randomPoint;
       this.playData.click += 1;
       this.createCoordinate(this.playData);
+      this.selectSpray();
+      this.playSound(this.playData.click);
+      console.log(this.selectedSoundData);
     },
     ready() {
       this.playData.beforeStart.startStatus = true;

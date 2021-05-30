@@ -2,16 +2,22 @@ const state = {
     selectedSpray: {},
     valoSprays: [
         {
-            name: 'dead',
+            name: 'zeroo',
+            id: 0,
+            url: 'spray0',
+            extension: 'png',
+        },
+        {
+            name: 'ok',
             id: 1,
             url: 'spray1',
-            extension: '.png',
+            extension: 'png',
         },
         {
             name: 'ok',
             id: 2,
             url: 'spray2',
-            extension: '.png',
+            extension: 'png',
         },
     ]
 };
@@ -24,8 +30,9 @@ const mutations = {
 
 const actions = {
     selectSpray({ commit }) {
-        const sprayId = Math.floor(Math.random() * 3);
+        const sprayId = Math.floor(Math.random() * 3);   // yazılan sayı çıkmaz
         commit('ADD_SELECTED_SPRAY', sprayId);
+        console.log(sprayId);
     },
 };
 
