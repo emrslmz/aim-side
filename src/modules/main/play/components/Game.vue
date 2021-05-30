@@ -57,8 +57,8 @@ export default {
       this.y = event.clientY;  //dikey  800
     },
     createCoordinate() {
-      this.balonCoordinateX = Math.floor(Math.random() * 1850);
-      this.balonCoordinateY = Math.floor(Math.random() * 800);
+      this.balonCoordinateX = Math.floor(Math.random() * 1700);
+      this.balonCoordinateY = Math.floor(Math.random() * 750);
     },
     clickBall() {
       const randomPoint = Math.floor(Math.random() * 10);
