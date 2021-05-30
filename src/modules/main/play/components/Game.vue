@@ -80,11 +80,11 @@ export default {
       const randomPoint = Math.floor(Math.random() * 10);
       // console.log(randomPoint);
       this.playData.point += randomPoint;
-      this.playData.click += 1;
+      this.playData.click += 10;
       this.createCoordinate(this.playData);
       this.selectSpray();
       this.playSound(this.playData.click);
-      console.log(this.selectedSoundData);
+      // console.log(this.selectedSoundData);
     },
     ready() {
       this.playData.beforeStart.startStatus = true;

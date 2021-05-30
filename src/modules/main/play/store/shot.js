@@ -32,7 +32,7 @@ const actions = {
     selectSpray({ commit }) {
         const sprayId = Math.floor(Math.random() * 3);   // yazılan sayı çıkmaz
         commit('ADD_SELECTED_SPRAY', sprayId);
-        console.log(sprayId);
+        // console.log(sprayId);
     },
 };
 

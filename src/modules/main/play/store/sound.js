@@ -33,7 +33,7 @@ const state = {
 
 const mutations = {
     PLAY_SOUND(state, click) {
-        if (click % 1 === 1) {
+        if (click % 1 === 0) {
             state.whichSound = 1;
         } else if (click % 2 === 0) {
             state.whichSound = 2;
@@ -49,10 +49,19 @@ const mutations = {
 };
 
 const actions = {
-    playSound({ commit }, click) {
+      playSound({ commit }, click) { //click = kill sayısı
+
         commit('PLAY_SOUND', click);
+
+        const number = click.toString().substring(click.toString().length-1);
+        console.log(number);
+        const audio = new Audio('/assets/sound/'+ state.selectedSoundData.soundName);
+        audio.play().then(() => {
+            state.selectedSoundData = {}
+        });
     },
 };
+// var kelime = metin.substring(0, 6);
 
 export default {
     namespaced: true,
