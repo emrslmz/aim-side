@@ -2,7 +2,8 @@
   <div>
     <div class="d-flex flex-column justify-content-center align-items-center top-bar-frame-center px-4">
       <h6>Puan: {{ playData.point }}</h6>
-      <small><i class="far fa-clock"></i></small>
+      <h6><small>Kill: {{ playData.click }}</small></h6>
+      <small><i class="far fa-clock"></i> <i>{{ playData.nowStart.playingTime }}</i></small>
     </div>
 
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right px-4">
@@ -59,7 +60,7 @@ export default {
 .top-bar-frame-center {
   background-color: #191919;
   width: 200px;
-  height: 60px;
+  height: 75px;
   border-radius: 0 0 50px 50px;
   position: absolute;
   left: 45%;

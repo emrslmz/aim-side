@@ -1,12 +1,21 @@
 const state = {
    playData: {
-       playTime: 3,
-       play: false,
-       balonCoordinateX: 0,
-       balonCoordinateY: 0,
+       beforeStart: {
+           startStatus: false,
+           time: 3,
+       },
+       playing: false,
+       target: {
+           itemCoordinateX: 0,
+           itemCoordinateY: 0,
+           x: 0,
+           y: 0,
+       },
+       nowStart: {
+           playingTime: 300,  //5minutes
+       },
        point: 0,
-       x: 0,
-       y: 0,
+       click: 0,
    },
 };
 
@@ -16,23 +25,27 @@ const mutations = {
 };
 
 const actions = {
-    countPlayTime(context, data) {
+    beforeStartTimer(context, data) {
         setInterval(() => {
-            if (data.playTime > 0) {
-                data.playTime--;
-            } else {
-                data.play = true;
+            if (data.beforeStart.time > 0 && data.beforeStart.startStatus === true) {
+                data.beforeStart.time--;
+            } else if (data.beforeStart.time === 0) {
+                data.playing = true;
             }
         }, 1000);
     },
-    // updateCoordinates(event) {
-    //     this.playData.x = event.clientX;  //yatay 1850
-    //     this.playData.y = event.clientY;  //dikey  800
-    // },
-    createCoordinate() {
-        this.playData.balonCoordinateX = Math.floor(Math.random() * 1700);
-        this.playData.balonCoordinateY = Math.floor(Math.random() * 750);
+    nowStartTimer(context, data) {
+    setInterval(() => {
+       if (data.nowStart.playingTime > 0) {
+           data.nowStart.playingTime--;
+       }
+    }, 1000);
+   },
+    createCoordinate(context, data) {
+        data.target.itemCoordinateX = Math.floor(Math.random() * 1700);
+        data.target.itemCoordinateY = Math.floor(Math.random() * 750);
     },
+
 };
 
 
