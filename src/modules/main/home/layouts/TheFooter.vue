@@ -2,7 +2,7 @@
   <footer>
     <div class="d-flex justify-content-between align-items-center px-3 text-white footer">
       <div>
-        <h6> <small><i class="fas fa-crosshairs"></i></small> Aim Side</h6>
+        <h6 class="valorant-font"><small><i class="fas fa-crosshairs"></i></small> Aim Side</h6>
       </div>
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-between footer-social">

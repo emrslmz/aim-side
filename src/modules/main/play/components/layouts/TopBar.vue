@@ -1,22 +1,37 @@
 <template>
   <div>
-    <div class="d-flex justify-content-between align-items-center top-bar-frame px-4">
-        <h6>Puan: 50</h6>
+    <div class="d-flex flex-column justify-content-center align-items-center top-bar-frame-center px-4">
+      <h6>Puan: {{ playData.point }}</h6>
+      <small><i class="far fa-clock"></i></small>
+    </div>
+
+    <div class="d-flex justify-content-end align-items-center top-bar-frame-right px-4">
 
 
       <div class="d-flex align-items-center header-button mb-2">
         <div class="dropdown mx-2 my-2">
-          <small id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-cog"></i>
+          <small id="crossairChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-crosshairs"></i>
           </small>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
             <small>
-              <span class="dropdown-item btn btn-sm"><i class="fas fa-crosshairs"></i> Change Cross</span>
+              <span class="dropdown-item btn btn-sm"><i class="fas fa-crosshairs"></i> Green Big cross</span>
             </small>
 
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center header-button mb-2">
+        <div class="dropdown mx-2 my-2">
+          <small id="backgroundChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-image"></i>
+          </small>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+
             <small>
-              <span class="dropdown-item btn btn-sm"><i class="far fa-image"></i> Change Background</span>
+              <span class="dropdown-item btn btn-sm"><i class="fas fa-crosshairs"></i> Ascent 1</span>
             </small>
 
 
@@ -29,17 +44,39 @@
   </div>
 </template>
 
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  name: 'TopBar',
+  computed: {
+    ...mapState('Play', ['playData']),
+  },
+};
+</script>
+
 <style scoped>
-.top-bar-frame {
+.top-bar-frame-center {
   background-color: #191919;
-  width: 300px;
+  width: 200px;
+  height: 60px;
+  border-radius: 0 0 50px 50px;
+  position: absolute;
+  left: 45%;
+  cursor: default;
+  color: white;
+}
+
+.top-bar-frame-right {
+  background-color: #191919;
+  width: 100px;
   height: 40px;
   border-radius: 0 0 0 50px;
   position: absolute;
   right: 0;
   cursor: default;
+  color: white;
 }
-
 
 .header-button {
   color: white;
