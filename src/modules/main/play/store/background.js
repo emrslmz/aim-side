@@ -5,7 +5,13 @@ const state = {
             name: 'Default',
             id: 0,
             mode: 2,  // 1= picture, 2= gardient
-            style: 'background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%)',  // 1= picture, 2= gardient
+            style: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',  // 1= picture, 2= gardient
+        },
+        {
+            name: 'Pruple',
+            id: 5,
+            mode: 2,
+            style: 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)',
         },
         {
             name: 'Ascent 1',
@@ -30,12 +36,6 @@ const state = {
             id: 4,
             mode: 1,
             style: 'split_2.jpg',
-        },
-        {
-            name: 'Gardient',
-            id: 5,
-            mode: 2,
-            style: 'background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)',
         },
         {
             name: 'Icebox 1',
@@ -73,13 +73,25 @@ const state = {
             mode: 1,
             style: 'breeze_2.jpg',
         },
+        {
+            name: 'Dark',
+            id: 12,
+            mode: 2,
+            style: 'linear-gradient(to right, #434343 0%, black 100%)',
+        },
+        {
+            name: 'Blue',
+            id: 13,
+            mode: 2,
+            style: 'linear-gradient(to top, #4481eb 0%, #04befe 100%)',
+        },
 
     ]
 };
-
 const mutations = {
     SELECT_BACKGROUND(state, dataId) {
         state.selectedBackground = state.backgrounds.find(a => a.id === dataId);
+        localStorage.setItem("backgroundDataId", dataId);
 
     }
 };

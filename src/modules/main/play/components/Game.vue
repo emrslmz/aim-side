@@ -7,7 +7,7 @@
         class="d-flex flex-column justify-content-center game-frame align-items-center text-white"
         @mousemove="updateCoordinates"
 
-        :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  selectedBackground.style , selectedCrossair.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedCrossair.folderName + '), auto'} : 'cursor: pointer;']"
+        :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  { 'background-image' : selectedBackground.style} , selectedCrossair.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedCrossair.folderName + '), auto'} : 'cursor: pointer;']"
     >
 
       <div v-if="playData.beforeStart.startStatus === false">
@@ -99,8 +99,9 @@ export default {
     },
   },
   created() {
+      const number = parseInt(localStorage.getItem("backgroundDataId"));
       this.createCoordinate(this.playData);
-      this.selectBackground(0);
+      this.selectBackground(number);
       this.selectCrossair(0);
   },
 };

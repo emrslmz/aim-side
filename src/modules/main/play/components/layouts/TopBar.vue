@@ -40,7 +40,7 @@
                    <img class="custom-picture" :src="'/assets/images/img/crossairs/' + cross.folderName" :alt="cross.name" :title="cross.name"  />
               </span>
 
-            <span class="dropdown-item" :style="cross.style" @click="selectCrossair(cross.id)" v-else>
+            <span class="dropdown-item" :style="{'background-image' : cross.style}" @click="selectCrossair(cross.id)" v-else>
                   {{ cross.name }} <i class="fas fa-mouse-pointer"></i>
               </span>
           </small>
