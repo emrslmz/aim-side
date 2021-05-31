@@ -7,6 +7,7 @@ import Shot from '@/modules/main/play/store/shot';
 import KillSound from '@/modules/main/play/store/killSound';
 import GunSound from '@/modules/main/play/store/gunSound';
 import Background from '@/modules/main/play/store/background';
+import CrossAir from '@/modules/main/play/store/crossair';
 
 
 Vue.use(Vuex);
@@ -19,5 +20,6 @@ export default new Vuex.Store({
         KillSound,
         GunSound,
         Background,
+        CrossAir,
     },
 });

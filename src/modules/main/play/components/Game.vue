@@ -6,9 +6,9 @@
     <div
         class="d-flex flex-column justify-content-center game-frame align-items-center text-white"
         @mousemove="updateCoordinates"
-        :style="selectedBackground.mode === 1 ?{ 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } : selectedBackground.style"
-    >
 
+        :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  selectedBackground.style , selectedCrossair.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedCrossair.folderName + '), auto'} : 'cursor: pointer;']"
+    >
 
       <div v-if="playData.beforeStart.startStatus === false">
         <select-gun />
@@ -76,12 +76,14 @@ export default {
     ...mapState('KillSound', ['selectedSoundData']),
     ...mapState('GunSound', ['selectedGun']),
     ...mapState('Background', ['selectedBackground']),
+    ...mapState('CrossAir', ['selectedCrossair']),
   },
   methods: {
     ...mapActions('Play', ['beforeStartTimer', 'createCoordinate', 'nowStartTimer']),
     ...mapActions('Shot', ['selectSpray']),
     ...mapActions('KillSound', ['playSound']),
     ...mapActions('Background', ['selectBackground']),
+    ...mapActions('CrossAir', ['selectCrossair']),
 
     updateCoordinates(event) {
       this.playData.target.x = event.clientX;  //yatay 1850
@@ -98,7 +100,8 @@ export default {
   },
   created() {
       this.createCoordinate(this.playData);
-      this.selectBackground(0)
+      this.selectBackground(0);
+      this.selectCrossair(0);
   },
 };
 

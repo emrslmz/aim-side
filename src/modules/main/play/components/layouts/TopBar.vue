@@ -28,18 +28,23 @@
         </div>
       </div>
       <!--CROSSAIR-->
-      <div class="d-flex align-items-center header-button">
-        <div class="dropdown mx-2 my-2">
-          <small id="crossairChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-crosshairs"></i>
+      <div class="dropdown-button">
+        <small data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-crosshairs"></i>
+        </small>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+
+          <small v-for="(cross, index) in crossairs" :key="index">
+              <span class="dropdown-item" v-if="cross.mode === 2" @click="selectCrossair(cross.id)">
+                    {{ cross.name }}
+                   <img class="custom-picture" :src="'/assets/images/img/crossairs/' + cross.folderName" :alt="cross.name" :title="cross.name"  />
+              </span>
+
+            <span class="dropdown-item" :style="cross.style" @click="selectCrossair(cross.id)" v-else>
+                  {{ cross.name }} <i class="fas fa-mouse-pointer"></i>
+              </span>
           </small>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
-            <small>
-              <span class="dropdown-item btn btn-sm"><i class="fas fa-crosshairs"></i> Green Big cross</span>
-            </small>
-
-          </div>
         </div>
       </div>
       <!--BACKGROUNDS-->
@@ -76,10 +81,12 @@ export default {
     ...mapState('Play', ['playData']),
     ...mapState('GunSound', ['gunSounds']),
     ...mapState('Background', ['backgrounds']),
+    ...mapState('CrossAir', ['crossairs']),
   },
   methods: {
     ...mapActions('GunSound', ['selectGun']),
     ...mapActions('Background', ['selectBackground']),
+    ...mapActions('CrossAir', ['selectCrossair']),
   },
 };
 </script>
@@ -131,9 +138,6 @@ export default {
 .dropdown-item:hover {
   background-color: #e9e9e9;
 }
-
-
-
 
 
 .header-button {
