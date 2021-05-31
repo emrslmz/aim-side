@@ -17,8 +17,8 @@
           </small>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
-            <small>
-              <span class="dropdown-item btn btn-sm"><i class="fas fa-crosshairs"></i> Green Big cross</span>
+            <small v-for="(gun, index) in gunSounds" :key="index" @click="selectGun(gun)">
+              <span class="dropdown-item btn btn-sm"><i class="fas fa-crosshairs"></i> {{ gun.name}}</span>
             </small>
 
           </div>
@@ -62,12 +62,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'TopBar',
   computed: {
     ...mapState('Play', ['playData']),
+    ...mapState('GunSound', ['gunSounds']),
+  },
+  methods: {
+    ...mapActions('GunSound', ['selectGun']),
   },
 };
 </script>
