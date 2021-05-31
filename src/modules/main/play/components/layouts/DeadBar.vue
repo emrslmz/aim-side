@@ -27,11 +27,11 @@ export default {
 .spray-picture {
   width: 100px;
   height: 100px;
-  animation: spaceboots 5s infinite;
+  animation: shake 5s infinite;
   transition: 0.8s;
 }
 
-@keyframes spaceboots {
+@keyframes shake {
   0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
   10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
   20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }

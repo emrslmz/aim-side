@@ -7,19 +7,7 @@
 
 
       <div v-if="playData.beforeStart.startStatus === false">
-        <div class="ready-button d-flex flex-column justify-content-end align-items-center">
-          <button class="btn valorant-button-light" @click="ready">
-          <span class="valorant-button-inner">
-            <span class="valorant-button-slide"></span>
-            <span class="valorant-button-content valorant-font">Ready</span>
-          </span>
-          </button>
-          <small class="text-dark">Click the <i>ready</i> button to get started.</small>
-         <div class="d-flex justify-content-around align-items-center text-dark">
-           <h6><a href="#">How to play?</a></h6>
-           <h6><a href="#">Conditions <small></small></a></h6>
-         </div>
-        </div>
+        <select-gun />
       </div>
 
       <div v-else>
@@ -51,6 +39,21 @@
     <dead-bar />
    </div>
 
+
+<!--   <div class="ready-button d-flex flex-column justify-content-end align-items-center">-->
+<!--     <button class="btn valorant-button-light" @click="ready">-->
+<!--          <span class="valorant-button-inner">-->
+<!--            <span class="valorant-button-slide"></span>-->
+<!--            <span class="valorant-button-content valorant-font">Ready</span>-->
+<!--          </span>-->
+<!--     </button>-->
+<!--     <small class="text-dark">Click the <i>ready</i> button to get started.</small>-->
+<!--     <div class="d-flex justify-content-around align-items-center text-dark">-->
+<!--       <h6><a href="#">How to play?</a></h6>-->
+<!--       <h6><a href="#">Conditions <small></small></a></h6>-->
+<!--     </div>-->
+<!--   </div>-->
+
  </div>
 </template>
 
@@ -60,6 +63,7 @@ import { mapState,mapActions } from 'vuex';
 export default {
   name: 'Game',
   components: {
+    SelectGun: () => import('@/modules/main/play/components/SelectGun.vue'),
     TopBar: () => import('@/modules/main/play/components/layouts/TopBar.vue'),
     DeadBar: () => import('@/modules/main/play/components/layouts/DeadBar.vue'),
   },
@@ -84,11 +88,6 @@ export default {
       this.createCoordinate(this.playData);
       this.selectSpray();
       this.playSound({click: this.playData.click, gunData: this.selectedGun});
-    },
-    ready() {
-      this.playData.beforeStart.startStatus = true;
-      this.beforeStartTimer(this.playData);
-      this.nowStartTimer(this.playData);
     },
   },
   created() {

@@ -15,10 +15,13 @@
           <small id="gunChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ghost"></i>
           </small>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+          <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="profileDropdown">
 
             <small v-for="(gun, index) in gunSounds" :key="index" @click="selectGun(gun)">
-              <span class="dropdown-item btn btn-sm"><i class="fas fa-crosshairs"></i> {{ gun.name}}</span>
+              <span class="dropdown-item btn btn-sm">
+                {{ gun.name}}
+               <img class="gun-picture" :src="'/assets/images/img/gun/' + gun.gunPic" @click="selectGun(gun)" :alt="gun.name" :title="gun.name" />
+                </span>
             </small>
 
           </div>
@@ -97,6 +100,11 @@ export default {
   right: 0;
   cursor: default;
   color: white;
+}
+
+.gun-picture {
+  width: auto;
+  height: 20px;
 }
 
 .header-button {
