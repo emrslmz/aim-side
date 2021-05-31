@@ -100,11 +100,12 @@ export default {
 
 <style scoped>
 .game-frame {
-  min-height: 90vh;
+  min-height: 85vh;
   width: 100%;
   cursor: url('/assets/images/img/small_red_cross.png'), auto;
   background-image: url('/assets/images/img/backgrounds/split_2.jpg');
-  background-size: 100%;
+  background-position: center;
+  background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
