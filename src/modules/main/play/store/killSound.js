@@ -51,7 +51,7 @@ const mutations = {
         }
 
         state.selectedSoundData = state.killSounds.find(a => a.id === state.whichKillSound);
-        console.log(parseInt(click.toString().substring(click.toString().length-1)));
+        // console.log(parseInt(click.toString().substring(click.toString().length-1)));
 
     },
 };
@@ -67,7 +67,7 @@ const actions = {
 
         const gunSound = new Audio('/assets/sound/gun/' + gunData.gunFolder);
          gunSound.play();
-         gunSound.volume = 0.3;
+         gunSound.volume = 0.2;
 
    },
 };

@@ -9,8 +9,8 @@
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right px-4">
 
 
-
-      <div class="d-flex align-items-center header-button mb-2">
+      <!--CHANGE GUN-->
+      <div class="d-flex align-items-center header-button">
         <div class="dropdown mx-2 my-2">
           <small id="gunChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ghost"></i>
@@ -20,15 +20,15 @@
             <small v-for="(gun, index) in gunSounds" :key="index" @click="selectGun(gun)">
               <span class="dropdown-item btn btn-sm">
                 {{ gun.name}}
-               <img class="gun-picture" :src="'/assets/images/img/gun/' + gun.gunPic" @click="selectGun(gun)" :alt="gun.name" :title="gun.name" />
+               <img class="custom-picture" :src="'/assets/images/img/gun/' + gun.gunPic" @click="selectGun(gun)" :alt="gun.name" :title="gun.name" />
                 </span>
             </small>
 
           </div>
         </div>
       </div>
-
-      <div class="d-flex align-items-center header-button mb-2">
+      <!--CROSSAIR-->
+      <div class="d-flex align-items-center header-button">
         <div class="dropdown mx-2 my-2">
           <small id="crossairChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-crosshairs"></i>
@@ -42,23 +42,26 @@
           </div>
         </div>
       </div>
-
-      <div class="d-flex align-items-center header-button mb-2">
-        <div class="dropdown mx-2 my-2">
-          <small id="backgroundChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <!--BACKGROUNDS-->
+      <div class="dropdown-button">
+          <small data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="far fa-image"></i>
           </small>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
-            <small>
-              <span class="dropdown-item btn btn-sm"><i class="fas fa-crosshairs"></i> Ascent 1</span>
+            <small v-for="(img, index) in backgrounds" :key="index">
+              <span class="dropdown-item" v-if="img.mode === 1" @click="selectBackground(img.id)">
+                    {{ img.name }}
+                   <img class="custom-picture" :src="'/assets/images/img/backgrounds/' + img.style" :alt="img.name" :title="img.name"  />
+              </span>
+
+              <span class="dropdown-item" :style="img.style" @click="selectBackground(img.id)" v-else>
+                  {{ img.name }}
+              </span>
             </small>
 
-
           </div>
-        </div>
       </div>
-
 
     </div>
   </div>
@@ -72,9 +75,11 @@ export default {
   computed: {
     ...mapState('Play', ['playData']),
     ...mapState('GunSound', ['gunSounds']),
+    ...mapState('Background', ['backgrounds']),
   },
   methods: {
     ...mapActions('GunSound', ['selectGun']),
+    ...mapActions('Background', ['selectBackground']),
   },
 };
 </script>
@@ -102,10 +107,34 @@ export default {
   color: white;
 }
 
-.gun-picture {
+.custom-picture {
   width: 20px;
   height: auto;
 }
+
+.dropdown-button {
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+  color: white;
+  opacity: 0.5;
+  transition: 0.4s;
+}
+.dropdown-button:hover {
+  opacity: 1;
+  transition: 0.4s;
+}
+
+.dropdown-item {
+  font-weight: bold;
+}
+
+.dropdown-item:hover {
+  background-color: #e9e9e9;
+}
+
+
+
+
 
 .header-button {
   color: white;

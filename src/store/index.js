@@ -6,6 +6,7 @@ import Play from '@/modules/main/play/store/play';
 import Shot from '@/modules/main/play/store/shot';
 import KillSound from '@/modules/main/play/store/killSound';
 import GunSound from '@/modules/main/play/store/gunSound';
+import Background from '@/modules/main/play/store/background';
 
 
 Vue.use(Vuex);
@@ -17,5 +18,6 @@ export default new Vuex.Store({
         Shot,
         KillSound,
         GunSound,
+        Background,
     },
 });

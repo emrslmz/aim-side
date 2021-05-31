@@ -3,7 +3,11 @@
    <div >
      <top-bar />
    </div>
-    <div class="d-flex flex-column justify-content-center game-frame align-items-center text-white" @mousemove="updateCoordinates">
+    <div
+        class="d-flex flex-column justify-content-center game-frame align-items-center text-white"
+        @mousemove="updateCoordinates"
+        :style="selectedBackground.mode === 1 ?{ 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } : selectedBackground.style"
+    >
 
 
       <div v-if="playData.beforeStart.startStatus === false">
@@ -71,11 +75,13 @@ export default {
     ...mapState('Play', ['playData']),
     ...mapState('KillSound', ['selectedSoundData']),
     ...mapState('GunSound', ['selectedGun']),
+    ...mapState('Background', ['selectedBackground']),
   },
   methods: {
     ...mapActions('Play', ['beforeStartTimer', 'createCoordinate', 'nowStartTimer']),
     ...mapActions('Shot', ['selectSpray']),
     ...mapActions('KillSound', ['playSound']),
+    ...mapActions('Background', ['selectBackground']),
 
     updateCoordinates(event) {
       this.playData.target.x = event.clientX;  //yatay 1850
@@ -92,6 +98,7 @@ export default {
   },
   created() {
       this.createCoordinate(this.playData);
+      this.selectBackground(0)
   },
 };
 
@@ -99,12 +106,11 @@ export default {
 
 <style scoped>
 .game-frame {
-  min-height: 85vh;
+  min-height: 90vh;
   width: 100%;
   cursor: url('/assets/images/img/small_red_cross.png'), auto;
-  background-image: url('/assets/images/img/backgrounds/split_2.jpg');
   background-position: center;
-  background-attachment: fixed;
+  /*background-attachment: fixed;*/
   background-repeat: no-repeat;
 }
 
