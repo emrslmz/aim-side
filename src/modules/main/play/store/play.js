@@ -2,7 +2,7 @@ const state = {
    playData: {
        beforeStart: {
            startStatus: false,
-           time: 3,
+           time: 1,
        },
        playing: false,
        target: {

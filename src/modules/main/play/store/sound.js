@@ -32,36 +32,44 @@ const state = {
 
 
 const mutations = {
-    PLAY_SOUND(state, click) {
-        if (click % 1 === 0) {
+    FETCH_SOUND(state, click) {
+
+        const number = parseInt(click.toString().substring(click.toString().length-1));
+
+        if (number === 6) {
             state.whichSound = 1;
-        } else if (click % 2 === 0) {
+        } else if (number === 7) {
             state.whichSound = 2;
-        } else if (click % 3 === 0) {
+        } else if (number === 8) {
             state.whichSound = 3;
-        } else if (click % 4 === 0) {
+        } else if (number === 9) {
             state.whichSound = 4;
-        } else if (click % 5 === 0) {
+        } else if (number === 0) {
             state.whichSound = 5;
+        } else {
+           state.whichSound = number;
         }
+
         state.selectedSoundData = state.sounds.find(a => a.id === state.whichSound);
-    }
+        console.log(parseInt(click.toString().substring(click.toString().length-1)));
+
+    },
 };
 
 const actions = {
-      playSound({ commit }, click) { //click = kill sayısı
+     playSound({ commit, state }, click) {
 
-        commit('PLAY_SOUND', click);
+        commit('FETCH_SOUND', click);
 
-        const number = click.toString().substring(click.toString().length-1);
-        console.log(number);
         const audio = new Audio('/assets/sound/'+ state.selectedSoundData.soundName);
-        audio.play().then(() => {
-            state.selectedSoundData = {}
-        });
-    },
+        audio.play();
+        audio.volume = 0.2;
+        // console.log(state.selectedSoundData);
+
+         //  state.sounds.find(a => a.id === click.toString(substring(click.toString().length-1).parseInt);
+         //  state.sounds.find(a => a.id === click.toString().substring(click.toString().length-1).parseInt);
+   },
 };
-// var kelime = metin.substring(0, 6);
 
 export default {
     namespaced: true,

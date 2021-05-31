@@ -9,6 +9,22 @@
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right px-4">
 
 
+
+      <div class="d-flex align-items-center header-button mb-2">
+        <div class="dropdown mx-2 my-2">
+          <small id="gunChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ghost"></i>
+          </small>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+
+            <small>
+              <span class="dropdown-item btn btn-sm"><i class="fas fa-crosshairs"></i> Green Big cross</span>
+            </small>
+
+          </div>
+        </div>
+      </div>
+
       <div class="d-flex align-items-center header-button mb-2">
         <div class="dropdown mx-2 my-2">
           <small id="crossairChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,7 +86,7 @@ export default {
 
 .top-bar-frame-right {
   background-color: #191919;
-  width: 100px;
+  min-width: 100px;
   height: 40px;
   border-radius: 0 0 0 50px;
   position: absolute;
