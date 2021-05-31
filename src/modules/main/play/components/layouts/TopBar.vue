@@ -103,8 +103,8 @@ export default {
 }
 
 .gun-picture {
-  width: auto;
-  height: 20px;
+  width: 20px;
+  height: auto;
 }
 
 .header-button {

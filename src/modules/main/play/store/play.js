@@ -12,7 +12,7 @@ const state = {
            y: 0,
        },
        nowStart: {
-           playingTime: 300,  //5minutes
+           playingTime: 120,  //2minutes
        },
        point: 0,
        click: 0,
