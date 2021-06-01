@@ -112,7 +112,6 @@ export default {
 .game-frame {
   min-height: 90vh;
   width: 100%;
-  cursor: url('/assets/images/img/small_red_cross.png'), auto;
   background-position: center;
   /*background-attachment: fixed;*/
   background-repeat: no-repeat;
@@ -126,6 +125,7 @@ export default {
   width: 100px;
   height: 100px;
 }
+
 
 
 .starting-text {
@@ -161,6 +161,10 @@ export default {
   font-size: 12px;
   padding: 0 5px 0 5px;
 }
+
+
+
+
 
 
 .btn {

@@ -1,8 +1,8 @@
 <template>
   <div class="dead-bar-frame">
-    <div>
-        <img v-if="selectedSpray.url"  class="spray-picture" :src="'/assets/images/img/sprays/' + this.selectedSpray.url + '.' + this.selectedSpray.extension"  />
-      </div>
+<!--    <div>-->
+<!--        <img v-if="selectedSpray.url"  class="spray-picture" :src="'/assets/images/img/sprays/' + this.selectedSpray.url + '.' + this.selectedSpray.extension"  />-->
+<!--      </div>-->
   </div>
 </template>
 

@@ -8,10 +8,22 @@
 
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right px-4">
 
+      <!--KILL SOUND-->
+      <div class="dropdown-button">
+        <small>
+          <i class="fas fa-dizzy" ></i> <!-- muteler-->
+        </small>
+      </div>
+      <!--GUN SOUND-->
+      <div class="dropdown-button">
+        <small>
+          <i class="fas fa-volume-mute"></i>
+        </small>
+      </div>
 
       <!--CHANGE GUN-->
-      <div class="d-flex align-items-center header-button">
-        <div class="dropdown mx-2 my-2">
+      <div class="dropdown-button">
+        <div class="dropdown">
           <small id="gunChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ghost"></i>
           </small>

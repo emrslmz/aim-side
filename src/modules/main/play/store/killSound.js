@@ -1,6 +1,6 @@
 const state = {
     whichKillSound: null,
-    selectedSoundData: {},
+    killSoundMute: false,
     killSounds: [
         {
             name: 'Kill1',
