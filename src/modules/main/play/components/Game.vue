@@ -6,7 +6,7 @@
     <div
         class="d-flex flex-column justify-content-center game-frame align-items-center text-white"
         @mousemove="updateCoordinates"
-
+        @click="clickCounter"
         :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  { 'background-image' : selectedBackground.style} , selectedCrossair.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedCrossair.folderName + '), auto'} : 'cursor: pointer;']"
     >
 
@@ -42,22 +42,6 @@
    <div class="d-flex justify-content-center">
     <dead-bar />
    </div>
-
-
-<!--   <div class="ready-button d-flex flex-column justify-content-end align-items-center">-->
-<!--     <button class="btn valorant-button-light" @click="ready">-->
-<!--          <span class="valorant-button-inner">-->
-<!--            <span class="valorant-button-slide"></span>-->
-<!--            <span class="valorant-button-content valorant-font">Ready</span>-->
-<!--          </span>-->
-<!--     </button>-->
-<!--     <small class="text-dark">Click the <i>ready</i> button to get started.</small>-->
-<!--     <div class="d-flex justify-content-around align-items-center text-dark">-->
-<!--       <h6><a href="#">How to play?</a></h6>-->
-<!--       <h6><a href="#">Conditions <small></small></a></h6>-->
-<!--     </div>-->
-<!--   </div>-->
-
  </div>
 </template>
 
@@ -73,15 +57,15 @@ export default {
   },
   computed: {
     ...mapState('Play', ['playData']),
-    ...mapState('KillSound', ['selectedSoundData']),
-    ...mapState('GunSound', ['selectedGun']),
+    ...mapState('Sounds', ['selectedSoundData']),
+    ...mapState('Sounds', ['selectedGun', 'gunSoundMute']),
     ...mapState('Background', ['selectedBackground']),
     ...mapState('CrossAir', ['selectedCrossair']),
   },
   methods: {
     ...mapActions('Play', ['beforeStartTimer', 'createCoordinate', 'nowStartTimer']),
     ...mapActions('Shot', ['selectSpray']),
-    ...mapActions('KillSound', ['playSound']),
+    ...mapActions('Sounds', ['playSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('CrossAir', ['selectCrossair']),
 
@@ -92,11 +76,16 @@ export default {
     clickItem() {
       const randomPoint = Math.floor(Math.random() * 10);
       this.playData.point += randomPoint;
-      this.playData.click += 1;
+      this.playData.kill += 1;
       this.createCoordinate(this.playData);
       this.selectSpray();
-      this.playSound({click: this.playData.click, gunData: this.selectedGun});
+      this.playSound({kill: this.playData.kill, gunData: this.selectedGun});
     },
+    clickCounter() {
+      if (this.playData.playing === true) {
+        this.playData.click++;
+      }
+    }
   },
   created() {
       const number = parseInt(localStorage.getItem("backgroundDataId"));

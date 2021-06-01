@@ -15,6 +15,7 @@ const state = {
            playingTime: 120,  //2minutes
        },
        point: 0,
+       kill: 0,
        click: 0,
    },
 };

@@ -21,11 +21,11 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   computed: {
-    ...mapState('GunSound', ['gunSounds']),
+    ...mapState('Sounds', ['gunSounds']),
     ...mapState('Play', ['playData']),
   },
   methods: {
-    ...mapActions('GunSound', ['selectGun']),
+    ...mapActions('Sounds', ['selectGun']),
     ...mapActions('Play', ['beforeStartTimer', 'nowStartTimer']),
     ready(gun) {
       this.playData.beforeStart.startStatus = true;

@@ -2,24 +2,42 @@
   <div>
     <div class="d-flex flex-column justify-content-center align-items-center top-bar-frame-center px-4">
       <h6>Puan: {{ playData.point }}</h6>
-      <h6><small>Kill: {{ playData.click }}</small></h6>
-      <small><i class="far fa-clock"></i> <i>{{ playData.nowStart.playingTime }}</i></small>
+      <h6><small><span style="font-size: 12px;">Kill/Bullet:</span> {{ playData.kill }}/ <span class="text-info">{{ playData.click }}</span></small></h6>
+      <h6>
+        <span style="font-size: 12px; color: #ff4040">Miss: {{ playData.click - playData.kill }} </span>
+        <small><i class="far fa-clock pl-2"></i><i> {{ playData.nowStart.playingTime }}</i></small>
+      </h6>
+
     </div>
 
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right px-4">
 
-      <!--KILL SOUND-->
+      <!--SETTINGS-->
       <div class="dropdown-button">
-        <small>
-          <i class="fas fa-dizzy" ></i> <!-- muteler-->
-        </small>
+        <div class="dropdown">
+          <small id="settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-cog"></i>
+          </small>
+          <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="profileDropdown">
+
+            <small>
+              <span class="dropdown-item btn btn-sm" @click="changeKillSound()">
+                <span v-if="killSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Kill Sound</span>
+                <span v-else><i class="fas fa-volume-up"></i> <b>Muted</b> Kill Sound</span>
+              </span>
+
+              <span class="dropdown-item btn btn-sm">
+                <span v-if="killSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Gun Sound</span>
+                <span v-else><i class="fas fa-volume-up"></i> <b>Muted</b> Gun Sound</span>
+              </span>
+
+
+            </small>
+
+          </div>
+        </div>
       </div>
-      <!--GUN SOUND-->
-      <div class="dropdown-button">
-        <small>
-          <i class="fas fa-volume-mute"></i>
-        </small>
-      </div>
+
 
       <!--CHANGE GUN-->
       <div class="dropdown-button">
@@ -91,14 +109,15 @@ export default {
   name: 'TopBar',
   computed: {
     ...mapState('Play', ['playData']),
-    ...mapState('GunSound', ['gunSounds']),
+    ...mapState('Sounds', ['gunSounds', 'gunSoundMute', 'killSoundMute']),
     ...mapState('Background', ['backgrounds']),
     ...mapState('CrossAir', ['crossairs']),
   },
   methods: {
-    ...mapActions('GunSound', ['selectGun']),
+    ...mapActions('Sounds', ['selectGun', 'changeKillSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('CrossAir', ['selectCrossair']),
+
   },
 };
 </script>
@@ -106,11 +125,11 @@ export default {
 <style scoped>
 .top-bar-frame-center {
   background-color: #191919;
-  width: 200px;
-  height: 75px;
+  width: 300px;
+  min-height: 85px;
   border-radius: 0 0 50px 50px;
   position: absolute;
-  left: 45%;
+  left: 42%;
   cursor: default;
   color: white;
 }

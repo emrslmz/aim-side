@@ -1,6 +1,36 @@
 const state = {
-    whichGun: null,
+    whichKillSound: null,
+    killSoundMute: false,
+    killSounds: [
+        {
+            name: 'Kill1',
+            id: 1,
+            soundFolder: 'dead_valorant_1.mp3',
+        },
+        {
+            name: 'Kill2',
+            id: 2,
+            soundFolder: 'dead_valorant_2.mp3',
+        },
+        {
+            name: 'Kill3',
+            id: 3,
+            soundFolder: 'dead_valorant_3.mp3',
+        },
+        {
+            name: 'Kill4',
+            id: 4,
+            soundFolder: 'dead_valorant_4.mp3',
+        },
+        {
+            name: 'Kill5',
+            id: 5,
+            soundFolder: 'dead_valorant_5.mp3',
+        },
+    ],
+    //gunSound
     selectedGun: {},
+    gunSoundMute: false,
     gunSounds: [   //csgo: 1 valorant: 2
         {
             name: 'Ak47',
@@ -101,16 +131,60 @@ const state = {
     ]
 };
 
+
 const mutations = {
+    FETCH_SOUND(state, kill) {
+
+        const number = parseInt(kill.toString().substring(kill.toString().length-1));
+
+        if (number === 6) {
+            state.whichKillSound = 1;
+        } else if (number === 7) {
+            state.whichKillSound = 2;
+        } else if (number === 8) {
+            state.whichKillSound = 3;
+        } else if (number === 9) {
+            state.whichKillSound = 4;
+        } else if (number === 0) {
+            state.whichKillSound = 5;
+        } else {
+           state.whichKillSound = number;
+        }
+        state.selectedSoundData = state.killSounds.find(a => a.id === state.whichKillSound);
+        // console.log(parseInt(kill.toString().substring(kill.toString().length-1)));
+    },
     SELECTE_GUN(state, data) {
         state.selectedGun = data;
+    },
+    CHANGE_KILL_SOUND(state) {
+        state.killSoundMute =  !state.killSoundMute;
     },
 };
 
 const actions = {
+     playSound({ commit, state }, {kill, gunData}) {
+
+        commit('FETCH_SOUND', kill);
+
+        const audio = new Audio('/assets/sound/'+ state.selectedSoundData.soundFolder);
+         audio.play();
+        audio.volume = 0.1;
+
+        const gunSound = new Audio('/assets/sound/gun/' + gunData.gunFolder);
+        gunSound.play();
+        if (state.killSoundMute === true) {
+            gunSound.volume = 0;
+        } else {
+            gunSound.volume = 0.2;
+        }
+   },
     selectGun({ commit }, data) {
-       commit('SELECTE_GUN', data);
+        commit('SELECTE_GUN', data);
     },
+    changeKillSound({ commit}) {
+         commit('CHANGE_KILL_SOUND');
+    },
+
 };
 
 export default {
