@@ -57,7 +57,6 @@ export default {
   },
   computed: {
     ...mapState('Play', ['playData']),
-    ...mapState('Sounds', ['selectedSoundData']),
     ...mapState('Sounds', ['selectedGun', 'gunSoundMute']),
     ...mapState('Background', ['selectedBackground']),
     ...mapState('CrossAir', ['selectedCrossair']),
@@ -92,6 +91,11 @@ export default {
       this.createCoordinate(this.playData);
       this.selectBackground(number);
       this.selectCrossair(0);
+
+      if (!localStorage.getItem("backgroundDataId")) {
+        localStorage.setItem("backgroundDataId", '5');
+      }
+
   },
 };
 

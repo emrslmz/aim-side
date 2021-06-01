@@ -20,7 +20,7 @@
           </small>
           <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="profileDropdown">
 
-            <small>
+
               <span class="dropdown-item btn btn-sm" @click="changeVolumeKillSound()">
                 <span v-if="killSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Kill Sound</span>
                 <span v-else><i class="fas fa-volume-up text-danger"></i> <b class="text-danger">Muted</b> Kill Sound</span>
@@ -31,14 +31,9 @@
                 <span v-else><i class="fas fa-volume-up text-danger"></i> <b class="text-danger">Muted</b> Gun Sound</span>
               </span>
 
-
-            </small>
-
           </div>
         </div>
       </div>
-
-
       <!--CHANGE GUN-->
       <div class="dropdown-button">
         <div class="dropdown">
@@ -99,6 +94,18 @@
       </div>
 
     </div>
+    <div class="d-flex justify-content-end align-items-center top-bar-frame-right-difficulty">
+      <small v-if="playData.difficulty.type === 1">Easy</small>
+      <small v-if="playData.difficulty.type === 2">Normal</small>
+      <small v-if="playData.difficulty.type === 3">Hard</small>
+      <small v-if="playData.difficulty.type === 4">Impossible</small>
+      <div class="dropdown-button" @click="changeDifficulty">
+        <small v-if="playData.difficulty.type === 1"><i class="fas fa-battery-quarter"></i></small> <!--EASY 1-->
+        <small v-else-if="playData.difficulty.type === 2"><i class="fas fa-battery-half"></i></small> <!--MIDDLE 2-->
+        <small v-else-if="playData.difficulty.type === 3"><i class="fas fa-battery-three-quarters"></i></small> <!--MIDDLE-UP 3-->
+        <small v-else-if="playData.difficulty.type === 4"><i class="fas fa-battery-full"></i></small> <!--HARD 4-->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -117,6 +124,7 @@ export default {
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('CrossAir', ['selectCrossair']),
+    ...mapActions('Play', ['changeDifficulty']),
 
   },
 };
@@ -141,6 +149,18 @@ export default {
   border-radius: 0 0 0 50px;
   position: absolute;
   right: 0;
+  cursor: default;
+  color: white;
+}
+
+.top-bar-frame-right-difficulty {
+  background-color: #191919;
+  min-width: 100px;
+  height: 40px;
+  border-radius: 0 0 0 50px;
+  position: absolute;
+  right: 0;
+  margin-top: 40px;
   cursor: default;
   color: white;
 }

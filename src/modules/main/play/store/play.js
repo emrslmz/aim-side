@@ -17,12 +17,32 @@ const state = {
        point: 0,
        kill: 0,
        click: 0,
+       difficulty: {
+           type: 1,
+           firstCoordinateX: 0,
+           firstCoordinateY: 0,
+           secondCoordinateX: null,
+           secondCoordinateY: null,
+           thirdCoordinateX: null,
+           thirdCoordinateY: null,
+           fourthCoordinateX: null,
+           fourthCoordinateY: null,
+       }
    },
 };
 
-
 const mutations = {
-
+    CHANGE_DIFFICULTY_TYPE(state) {
+        if (state.playData.difficulty.type === 1) {
+            state.playData.difficulty.type = 2;
+        } else if (state.playData.difficulty.type === 2) {
+            state.playData.difficulty.type = 3;
+        } else if (state.playData.difficulty.type === 3) {
+            state.playData.difficulty.type = 4;
+        } else if (state.playData.difficulty.type === 4) {
+            state.playData.difficulty.type = 1;
+        }
+    },
 };
 
 const actions = {
@@ -46,7 +66,9 @@ const actions = {
         data.target.itemCoordinateX = Math.floor(Math.random() * 1700);
         data.target.itemCoordinateY = Math.floor(Math.random() * 750);
     },
-
+    changeDifficulty({ commit }) {
+        commit('CHANGE_DIFFICULTY_TYPE');
+    }
 };
 
 
