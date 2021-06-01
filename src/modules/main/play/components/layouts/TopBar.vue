@@ -95,15 +95,9 @@
 
     </div>
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right-difficulty">
-      <small v-if="playData.difficulty.type === 1">Easy</small>
-      <small v-if="playData.difficulty.type === 2">Normal</small>
-      <small v-if="playData.difficulty.type === 3">Hard</small>
-      <small v-if="playData.difficulty.type === 4">Impossible</small>
+      <small>{{ playData.selectedDifficulty.name }}</small>
       <div class="dropdown-button" @click="changeDifficulty">
-        <small v-if="playData.difficulty.type === 1"><i class="fas fa-battery-quarter"></i></small> <!--EASY 1-->
-        <small v-else-if="playData.difficulty.type === 2"><i class="fas fa-battery-half"></i></small> <!--MIDDLE 2-->
-        <small v-else-if="playData.difficulty.type === 3"><i class="fas fa-battery-three-quarters"></i></small> <!--MIDDLE-UP 3-->
-        <small v-else-if="playData.difficulty.type === 4"><i class="fas fa-battery-full"></i></small> <!--HARD 4-->
+        <small><i :class="playData.selectedDifficulty.icon"></i></small> <!--EASY 1-->
       </div>
     </div>
   </div>
@@ -124,8 +118,18 @@ export default {
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('CrossAir', ['selectCrossair']),
-    ...mapActions('Play', ['changeDifficulty']),
-
+    ...mapActions('Play', ['createCoordinate', 'selectDifficulty']),
+    changeDifficulty() {
+      if (this.playData.selectedDifficulty.type === 1) {
+        this.selectDifficulty(2);
+      } else if (this.playData.selectedDifficulty.type === 2) {
+        this.selectDifficulty(3);
+      } else if (this.playData.selectedDifficulty.type === 3) {
+        this.selectDifficulty(4);
+      } else if (this.playData.selectedDifficulty.type === 4) {
+        this.selectDifficulty(1);
+      }
+    }
   },
 };
 </script>

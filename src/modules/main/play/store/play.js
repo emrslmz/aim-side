@@ -10,6 +10,12 @@ const state = {
            itemCoordinateY: 0,
            x: 0,
            y: 0,
+           secondCoordinateX: null,
+           secondCoordinateY: null,
+           thirdCoordinateX: null,
+           thirdCoordinateY: null,
+           fourthCoordinateX: null,
+           fourthCoordinateY: null,
        },
        nowStart: {
            playingTime: 120,  //2minutes
@@ -17,32 +23,42 @@ const state = {
        point: 0,
        kill: 0,
        click: 0,
-       difficulty: {
-           type: 1,
-           firstCoordinateX: 0,
-           firstCoordinateY: 0,
-           secondCoordinateX: null,
-           secondCoordinateY: null,
-           thirdCoordinateX: null,
-           thirdCoordinateY: null,
-           fourthCoordinateX: null,
-           fourthCoordinateY: null,
-       }
+       selectedDifficulty: {},
+       difficulty: [
+           {
+               type: 1,
+               name: 'Easy',
+               icon: 'fas fa-battery-quarter',
+               coordinates: [],
+           },
+           {
+               type: 2,
+               name: 'Normal',
+               icon: 'fas fa-battery-half',
+               coordinates: [],
+           },
+           {
+               type: 3,
+               name: 'Hard',
+               icon: 'fas fa-battery-three-quarters',
+               coordinates: [],
+           },
+           {
+               type: 4,
+               name: 'Impossible',
+               icon: 'fas fa-battery-full',
+               coordinates: [],
+           },
+
+       ],
    },
 };
 
 const mutations = {
-    CHANGE_DIFFICULTY_TYPE(state) {
-        if (state.playData.difficulty.type === 1) {
-            state.playData.difficulty.type = 2;
-        } else if (state.playData.difficulty.type === 2) {
-            state.playData.difficulty.type = 3;
-        } else if (state.playData.difficulty.type === 3) {
-            state.playData.difficulty.type = 4;
-        } else if (state.playData.difficulty.type === 4) {
-            state.playData.difficulty.type = 1;
-        }
-    },
+    SELECTED_DIFFICULTY(state, dataId) {
+       state.playData.selectedDifficulty = state.playData.difficulty.find(a => a.type === dataId);
+        console.log(state.playData.selectedDifficulty);
+    }
 };
 
 const actions = {
@@ -66,9 +82,9 @@ const actions = {
         data.target.itemCoordinateX = Math.floor(Math.random() * 1700);
         data.target.itemCoordinateY = Math.floor(Math.random() * 750);
     },
-    changeDifficulty({ commit }) {
-        commit('CHANGE_DIFFICULTY_TYPE');
-    }
+    selectDifficulty({ commit }, dataId) {
+        commit('SELECTED_DIFFICULTY', dataId);
+    },
 };
 
 

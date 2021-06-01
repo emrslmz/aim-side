@@ -62,7 +62,7 @@ export default {
     ...mapState('CrossAir', ['selectedCrossair']),
   },
   methods: {
-    ...mapActions('Play', ['beforeStartTimer', 'createCoordinate', 'nowStartTimer']),
+    ...mapActions('Play', ['beforeStartTimer', 'createCoordinate', 'nowStartTimer', 'selectDifficulty']),
     ...mapActions('Shot', ['selectSpray']),
     ...mapActions('Sounds', ['playSound']),
     ...mapActions('Background', ['selectBackground']),
@@ -91,6 +91,7 @@ export default {
       this.createCoordinate(this.playData);
       this.selectBackground(number);
       this.selectCrossair(0);
+      this.selectDifficulty(1);
 
       if (!localStorage.getItem("backgroundDataId")) {
         localStorage.setItem("backgroundDataId", '5');
