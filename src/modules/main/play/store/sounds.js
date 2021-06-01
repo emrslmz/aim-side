@@ -153,12 +153,15 @@ const mutations = {
         state.selectedSoundData = state.killSounds.find(a => a.id === state.whichKillSound);
         // console.log(parseInt(kill.toString().substring(kill.toString().length-1)));
     },
-    SELECTE_GUN(state, data) {
+    SELECTED_GUN(state, data) {
         state.selectedGun = data;
     },
-    CHANGE_KILL_SOUND(state) {
-        state.killSoundMute =  !state.killSoundMute;
+    CHANGE_VOLUME_KILL_SOUND(state) {
+        state.killSoundMute = !state.killSoundMute;
     },
+    CHANGE_VOLUME_GUN_SOUND(state) {
+        state.gunSoundMute = !state.gunSoundMute;
+    }
 };
 
 const actions = {
@@ -168,7 +171,11 @@ const actions = {
 
         const audio = new Audio('/assets/sound/'+ state.selectedSoundData.soundFolder);
          audio.play();
-        audio.volume = 0.1;
+         if (state.gunSoundMute === true) {
+             audio.volume = 0;
+         } else {
+             audio.volume = 0.1;
+         }
 
         const gunSound = new Audio('/assets/sound/gun/' + gunData.gunFolder);
         gunSound.play();
@@ -179,11 +186,14 @@ const actions = {
         }
    },
     selectGun({ commit }, data) {
-        commit('SELECTE_GUN', data);
+        commit('SELECTED_GUN', data);
     },
-    changeKillSound({ commit}) {
-         commit('CHANGE_KILL_SOUND');
+    changeVolumeKillSound({ commit}) {
+         commit('CHANGE_VOLUME_KILL_SOUND');
     },
+    changeVolumeGunSound({ commit }) {
+         commit('CHANGE_VOLUME_GUN_SOUND');
+    }
 
 };
 

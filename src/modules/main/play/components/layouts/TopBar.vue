@@ -21,14 +21,14 @@
           <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="profileDropdown">
 
             <small>
-              <span class="dropdown-item btn btn-sm" @click="changeKillSound()">
+              <span class="dropdown-item btn btn-sm" @click="changeVolumeKillSound()">
                 <span v-if="killSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Kill Sound</span>
-                <span v-else><i class="fas fa-volume-up"></i> <b>Muted</b> Kill Sound</span>
+                <span v-else><i class="fas fa-volume-up text-danger"></i> <b class="text-danger">Muted</b> Kill Sound</span>
               </span>
 
-              <span class="dropdown-item btn btn-sm">
-                <span v-if="killSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Gun Sound</span>
-                <span v-else><i class="fas fa-volume-up"></i> <b>Muted</b> Gun Sound</span>
+              <span class="dropdown-item btn btn-sm" @click="changeVolumeGunSound()">
+                <span v-if="gunSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Gun Sound</span>
+                <span v-else><i class="fas fa-volume-up text-danger"></i> <b class="text-danger">Muted</b> Gun Sound</span>
               </span>
 
 
@@ -114,7 +114,7 @@ export default {
     ...mapState('CrossAir', ['crossairs']),
   },
   methods: {
-    ...mapActions('Sounds', ['selectGun', 'changeKillSound']),
+    ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('CrossAir', ['selectCrossair']),
 
