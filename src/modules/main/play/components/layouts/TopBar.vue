@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="d-flex flex-column justify-content-center align-items-center top-bar-frame-center px-4">
-      <h6>Puan: {{ playData.point }}</h6>
-      <h6><small><span style="font-size: 12px;">Kill/Bullet:</span> {{ playData.kill }}/ <span class="text-info">{{ playData.click }}</span></small></h6>
+      <h6>Puan: {{ playData.gameData.point }}</h6>
+      <h6><small><span style="font-size: 12px;">Kill/Bullet:</span> {{ playData.gameData.kill }}/ <span class="text-info">{{ playData.gameData.click }}</span></small></h6>
       <h6>
-        <span style="font-size: 12px; color: #ff4040">Miss: {{ playData.click - playData.kill }} </span>
+        <span style="font-size: 12px; color: #ff4040">Miss: {{ playData.gameData.click - playData.gameData.kill }} </span>
         <small><i class="far fa-clock pl-2"></i><i> {{ playData.nowStart.playingTime }}</i></small>
       </h6>
 
@@ -95,7 +95,7 @@
 
     </div>
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right-difficulty">
-      <small>{{ playData.selectedDifficulty.name }}</small>
+      <small>{{ playData.selectedDifficulty.name }} {{ playData.selectedDifficulty.type}}</small>
       <div class="dropdown-button" @click="changeDifficulty">
         <small><i :class="playData.selectedDifficulty.icon"></i></small> <!--EASY 1-->
       </div>
@@ -120,12 +120,21 @@ export default {
     ...mapActions('CrossAir', ['selectCrossair']),
     ...mapActions('Play', ['firstTimeCreateCoordinate', 'selectDifficulty']),
     changeDifficulty() {
+
       if (this.playData.selectedDifficulty.type === 1) {
         this.selectDifficulty(2);
-        this.firstTimeCreateCoordinate();
       } else if (this.playData.selectedDifficulty.type === 2) {
+        this.selectDifficulty(3);
+      } else if (this.playData.selectedDifficulty.type === 3) {
+        this.selectDifficulty(4);
+      } else if (this.playData.selectedDifficulty.type === 4) {
+        this.selectDifficulty(5);
+      } else if (this.playData.selectedDifficulty.type === 5) {
+        this.selectDifficulty(6);
+      } else if (this.playData.selectedDifficulty.type === 6) {
+        this.selectDifficulty(7);
+      } else if (this.playData.selectedDifficulty.type === 7) {
         this.selectDifficulty(1);
-        this.firstTimeCreateCoordinate();
       }
     }
   },
@@ -145,6 +154,10 @@ export default {
   left: 42%;
   cursor: default;
   color: white;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;
 }
 
 .top-bar-frame-right {
@@ -156,6 +169,10 @@ export default {
   right: 0;
   cursor: default;
   color: white;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;
 }
 
 .top-bar-frame-right-difficulty {
@@ -168,6 +185,10 @@ export default {
   margin-top: 40px;
   cursor: default;
   color: white;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;
 }
 
 .custom-picture {

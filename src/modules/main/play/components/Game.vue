@@ -5,18 +5,15 @@
    </div>
     <div
         class="d-flex flex-column justify-content-center game-frame align-items-center text-white"
-        @mousemove="updateCoordinates"
         @click="clickCounter"
-        :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  { 'background-image' : selectedBackground.style} , selectedCrossair.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedCrossair.folderName + '), auto'} : 'cursor: pointer;']"
-    >
+        :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  { 'background-image' : selectedBackground.style} , selectedCrossair.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedCrossair.folderName + '), auto'} : 'cursor: pointer;']">
 
       <div v-if="playData.beforeStart.startStatus === false">
         <select-gun />
       </div>
 
       <div v-else>
-
-        <div class="text-center" v-if="playData.playing === false">
+        <div class="text-center" v-if="playData.nowStart.playing === false">
           <h1 v-if="playData.beforeStart.time > -1"> {{ playData.beforeStart.time }}</h1>
           <div>
             <h5 class="starting-text" v-if="playData.beforeStart.time > 0">Will start soon!</h5>
@@ -27,22 +24,51 @@
 
 
         <div v-else>
+          <!--FIRST ITEM-->
           <div
+              v-if="playData.selectedDifficulty.type >= 1"
               class="ballon1"
               :style="{ left: [playData.coordinates.firstCoordinateX + 'px'], top: [playData.coordinates.firstCoordinateY + 'px']}"
               @click="clickItem(1)"
           ></div>
-          <div v-if="playData.selectedDifficulty.type === 2"
+          <!--SECOND ITEM-->
+          <div v-if="playData.selectedDifficulty.type >= 2"
               class="ballon1"
               :style="{ left: [playData.coordinates.secondCoordinateX + 'px'], top: [playData.coordinates.secondCoordinateY + 'px']}"
               @click="clickItem(2)"
           ></div>
+          <!--THIRD ITEM-->
+          <div v-if="playData.selectedDifficulty.type >= 3"
+               class="ballon1"
+               :style="{ left: [playData.coordinates.thirdCoordinateX + 'px'], top: [playData.coordinates.thirdCoordinateY + 'px']}"
+               @click="clickItem(3)"
+          ></div>
+          <!--FOURTH ITEM-->
+          <div v-if="playData.selectedDifficulty.type >= 4"
+               class="ballon1"
+               :style="{ left: [playData.coordinates.fourthCoordinateX + 'px'], top: [playData.coordinates.fourthCoordinateY + 'px']}"
+               @click="clickItem(4)"
+          ></div>
+          <!--FIFTH ITEM-->
+          <div v-if="playData.selectedDifficulty.type >= 5"
+               class="ballon1"
+               :style="{ left: [playData.coordinates.fifthCoordinateX + 'px'], top: [playData.coordinates.fifthCoordinateY + 'px']}"
+               @click="clickItem(5)"
+          ></div>
+          <!--SIXTH ITEM-->
+          <div v-if="playData.selectedDifficulty.type >= 6"
+               class="ballon1"
+               :style="{ left: [playData.coordinates.sixthCoordinateX + 'px'], top: [playData.coordinates.sixthCoordinateY + 'px']}"
+               @click="clickItem(6)"
+          ></div>
+          <!--SEVENTH ITEM-->
+          <div v-if="playData.selectedDifficulty.type >= 7"
+               class="ballon1"
+               :style="{ left: [playData.coordinates.seventhCoordinateX + 'px'], top: [playData.coordinates.seventhCoordinateY + 'px']}"
+               @click="clickItem(7)"
+          ></div>
         </div>
       </div>
-
-
-<!--      <p>Coordinates: {{ playData.x }} / {{ playData.y }}</p>-->
-<!--      <p>Balon coordinate: {{ playData.balonCoordinateX }} / {{ playData.balonCoordinateY }}</p>-->
 
     </div>
    <div class="d-flex justify-content-center">
@@ -74,21 +100,17 @@ export default {
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('CrossAir', ['selectCrossair']),
 
-    updateCoordinates(event) {
-      this.playData.target.x = event.clientX;  //yatay 1850
-      this.playData.target.y = event.clientY;  //dikey  800
-    },
     clickItem(itemId) {
       const randomPoint = Math.floor(Math.random() * 10);
-      this.playData.point += randomPoint;
-      this.playData.kill += 1;
+      this.playData.gameData.point += randomPoint;
+      this.playData.gameData.kill += 1;
       this.createCustomCoordinate(itemId);
       this.selectSpray();
-      this.playSound({kill: this.playData.kill, gunData: this.selectedGun});
+      this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
     },
     clickCounter() {
-      if (this.playData.playing === true) {
-        this.playData.click++;
+      if (this.playData.nowStart.playing === true) {
+        this.playData.gameData.click++;
       }
     }
   },
@@ -96,7 +118,7 @@ export default {
       const number = parseInt(localStorage.getItem("backgroundDataId"));
       this.selectBackground(number);
       this.selectCrossair(0);
-      this.selectDifficulty(1);
+      this.selectDifficulty(4);
 
       if (!localStorage.getItem("backgroundDataId")) {
         localStorage.setItem("backgroundDataId", '5');
@@ -114,6 +136,7 @@ export default {
   background-position: center;
   /*background-attachment: fixed;*/
   background-repeat: no-repeat;
+
 }
 
 .ballon1 {
