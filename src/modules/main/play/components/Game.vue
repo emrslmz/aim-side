@@ -121,7 +121,7 @@ export default {
       this.createCustomCoordinate(itemId);
       this.selectSpray();
       this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
-      console.log(this.playData.selectedDifficulty.type);
+
     },
     clickCounter() {
       if (this.playData.nowStart.playing === true) {
