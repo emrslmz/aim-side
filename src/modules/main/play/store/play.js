@@ -5,7 +5,10 @@ const state = {
            time: 1,
        },
        playing: false,
-g
+       target: {
+           x: 0,
+           y: 0,
+       },
        nowStart: {
            playingTime: 120,  //2minutes
        },
