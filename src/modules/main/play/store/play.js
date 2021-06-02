@@ -34,38 +34,37 @@ const state = {
            {
                type: 1,
                name: 'Extreme',  // 1 tane çıkcak
-               icon: 'fas fa-dice',
+               icon: 'fas fa-apple-alt color-blue',
            },
            {
                type: 2,
                name: 'Impossible', //2 tane çıkcak
-               icon: 'fas fa-dice',
-
+               icon: 'fas fa-apple-alt color-pruple',
            },
            {
                type: 3,
                name: 'Hard', //3 tane çıkcak
-               icon: 'fas fa-dice',
+               icon: 'fas fa-apple-alt color-red',
            },
            {
                type: 4,
                name: 'Medium', //4 tane çıkcak
-               icon: 'fas fa-dice',
+               icon: 'fas fa-apple-alt color-orange',
            },
            {
                type: 5,
                name: 'Easy',  //5 tane çıkcak
-               icon: 'fas fa-dice',
+               icon: 'fas fa-apple-alt color-yellow',
            },
            {
                type: 6,
                name: 'Beginner',  //6 tane çıkcak
-               icon: 'fas fa-dice',
+               icon: 'fas fa-apple-alt color-green',
            },
            {
                type: 7,
                name: 'Rookie',  //7 tane çıkcak
-               icon: 'fas fa-dice',
+               icon: 'fas fa-apple-alt color-lightgreen',
            },
        ],
    },

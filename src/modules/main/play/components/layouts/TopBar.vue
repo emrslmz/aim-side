@@ -14,47 +14,43 @@
 
       <!--SETTINGS-->
       <div class="dropdown-button">
-        <div class="dropdown">
-          <small id="settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-cog"></i>
-          </small>
-          <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="profileDropdown">
+        <small class="dropdown-button-icon" id="settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-cog"></i>
+        </small>
+        <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="profileDropdown">
 
 
-              <span class="dropdown-item btn btn-sm" @click="changeVolumeKillSound()">
-                <span v-if="killSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Kill Sound</span>
-                <span v-else><i class="fas fa-volume-up text-danger"></i> <b class="text-danger">Muted</b> Kill Sound</span>
-              </span>
+            <span class="dropdown-item btn btn-sm" @click="changeVolumeKillSound()">
+              <span v-if="killSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Gun Sound</span>
+              <span v-else><i class="fas fa-volume-up text-danger"></i> <b class="text-danger">Muted</b> Kill Sound</span>
+            </span>
 
-              <span class="dropdown-item btn btn-sm" @click="changeVolumeGunSound()">
-                <span v-if="gunSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Gun Sound</span>
-                <span v-else><i class="fas fa-volume-up text-danger"></i> <b class="text-danger">Muted</b> Gun Sound</span>
-              </span>
+            <span class="dropdown-item btn btn-sm" @click="changeVolumeGunSound()">
+              <span v-if="gunSoundMute === false"><i class="fas fa-volume-mute"></i> <b>Mute</b> Kill Sound</span>
+              <span v-else><i class="fas fa-volume-up text-danger"></i> <b class="text-danger">Muted</b> Gun Sound</span>
+            </span>
 
-          </div>
         </div>
       </div>
       <!--CHANGE GUN-->
       <div class="dropdown-button">
-        <div class="dropdown">
-          <small id="gunChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-ghost"></i>
+        <small class="dropdown-button-icon" id="gunChange" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ghost"></i>
+        </small>
+        <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="profileDropdown">
+
+          <small v-for="(gun, index) in gunSounds" :key="index" @click="selectGun(gun)">
+            <span class="dropdown-item btn btn-sm">
+              {{ gun.name}}
+             <img class="custom-picture" :src="'/assets/images/img/gun/' + gun.gunPic" @click="selectGun(gun)" :alt="gun.name" :title="gun.name" />
+              </span>
           </small>
-          <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="profileDropdown">
 
-            <small v-for="(gun, index) in gunSounds" :key="index" @click="selectGun(gun)">
-              <span class="dropdown-item btn btn-sm">
-                {{ gun.name}}
-               <img class="custom-picture" :src="'/assets/images/img/gun/' + gun.gunPic" @click="selectGun(gun)" :alt="gun.name" :title="gun.name" />
-                </span>
-            </small>
-
-          </div>
         </div>
       </div>
       <!--CROSSAIR-->
       <div class="dropdown-button">
-        <small data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-crosshairs"></i>
         </small>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
@@ -74,7 +70,7 @@
       </div>
       <!--BACKGROUNDS-->
       <div class="dropdown-button">
-          <small data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="far fa-image"></i>
           </small>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
@@ -95,7 +91,7 @@
 
     </div>
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right-difficulty">
-      <small>{{ playData.selectedDifficulty.name }} {{ playData.selectedDifficulty.type}}</small>
+      <small>{{ playData.selectedDifficulty.name }}</small>
       <div class="dropdown-button" @click="changeDifficulty">
         <small><i :class="playData.selectedDifficulty.icon"></i></small> <!--EASY 1-->
       </div>
@@ -185,10 +181,6 @@ export default {
   margin-top: 40px;
   cursor: default;
   color: white;
-  -webkit-user-select: none;  /* Chrome all / Safari all */
-  -moz-user-select: none;     /* Firefox all */
-  -ms-user-select: none;      /* IE 10+ */
-  user-select: none;
 }
 
 .custom-picture {
@@ -202,6 +194,7 @@ export default {
   color: white;
   opacity: 0.5;
   transition: 0.4s;
+  z-index: +1;
 }
 .dropdown-button:hover {
   opacity: 1;
@@ -216,40 +209,25 @@ export default {
   background-color: #e9e9e9;
 }
 
-
-.header-button {
-  color: white;
-  border-radius: 10px;
-  transition: 0.4s;
-  cursor: pointer;
-  opacity: 0.5;
+.color-blue {
+  color: blue;
 }
-
-.header-button:hover {
-  transition: 0.4s;
-  opacity: 1;
+.color-pruple {
+  color: purple;
 }
-
-.header-button span {
-  background-color: white;
-  color: #343A40;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: 0.4s;
-  min-width: 100px;
-  text-decoration: none;
+.color-red {
+  color: red;
 }
-
-.header-button a {
-  text-decoration: none;
+.color-orange {
+  color: orange;
 }
-
-.header-button span:hover {
-  background-color: #d42053;
-  color: white;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: 0.4s;
-  text-decoration: none;
+.color-yellow {
+  color: yellow;
+}
+.color-green {
+  color: green;
+}
+.color-lightgreen {
+  color: #28ffa7;
 }
 </style>

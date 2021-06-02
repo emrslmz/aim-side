@@ -25,48 +25,61 @@
 
         <div v-else>
           <!--FIRST ITEM-->
-          <div
-              v-if="playData.selectedDifficulty.type >= 1"
-              class="ballon1"
-              :style="{ left: [playData.coordinates.firstCoordinateX + 'px'], top: [playData.coordinates.firstCoordinateY + 'px']}"
-              @click="clickItem(1)"
-          ></div>
+           <item :difficultyType="playData.selectedDifficulty.type"
+                 :coordinateX="playData.coordinates.firstCoordinateX"
+                 :coordinateY="playData.coordinates.firstCoordinateY"
+                 :functionNumber="1"
+                 :clickItem="clickItem" />
+
           <!--SECOND ITEM-->
-          <div v-if="playData.selectedDifficulty.type >= 2"
-              class="ballon1"
-              :style="{ left: [playData.coordinates.secondCoordinateX + 'px'], top: [playData.coordinates.secondCoordinateY + 'px']}"
-              @click="clickItem(2)"
-          ></div>
+
+          <item :difficultyType="playData.selectedDifficulty.type"
+                :coordinateX="playData.coordinates.secondCoordinateX"
+                :coordinateY="playData.coordinates.secondCoordinateY"
+                :functionNumber="2"
+                :clickItem="clickItem" />
+
+
           <!--THIRD ITEM-->
-          <div v-if="playData.selectedDifficulty.type >= 3"
-               class="ballon1"
-               :style="{ left: [playData.coordinates.thirdCoordinateX + 'px'], top: [playData.coordinates.thirdCoordinateY + 'px']}"
-               @click="clickItem(3)"
-          ></div>
+          <item :difficultyType="playData.selectedDifficulty.type"
+                :coordinateX="playData.coordinates.thirdCoordinateX"
+                :coordinateY="playData.coordinates.thirdCoordinateY"
+                :functionNumber="3"
+                :clickItem="clickItem" />
+
+
           <!--FOURTH ITEM-->
-          <div v-if="playData.selectedDifficulty.type >= 4"
-               class="ballon1"
-               :style="{ left: [playData.coordinates.fourthCoordinateX + 'px'], top: [playData.coordinates.fourthCoordinateY + 'px']}"
-               @click="clickItem(4)"
-          ></div>
+
+          <item :difficultyType="playData.selectedDifficulty.type"
+                :coordinateX="playData.coordinates.fourthCoordinateX"
+                :coordinateY="playData.coordinates.fourthCoordinateY"
+                :functionNumber="4"
+                :clickItem="clickItem" />
+
           <!--FIFTH ITEM-->
-          <div v-if="playData.selectedDifficulty.type >= 5"
-               class="ballon1"
-               :style="{ left: [playData.coordinates.fifthCoordinateX + 'px'], top: [playData.coordinates.fifthCoordinateY + 'px']}"
-               @click="clickItem(5)"
-          ></div>
+
+          <item :difficultyType="playData.selectedDifficulty.type"
+                :coordinateX="playData.coordinates.fifthCoordinateX"
+                :coordinateY="playData.coordinates.fifthCoordinateY"
+                :functionNumber="5"
+                :clickItem="clickItem" />
+
           <!--SIXTH ITEM-->
-          <div v-if="playData.selectedDifficulty.type >= 6"
-               class="ballon1"
-               :style="{ left: [playData.coordinates.sixthCoordinateX + 'px'], top: [playData.coordinates.sixthCoordinateY + 'px']}"
-               @click="clickItem(6)"
-          ></div>
+
+          <item :difficultyType="playData.selectedDifficulty.type"
+                :coordinateX="playData.coordinates.sixthCoordinateX"
+                :coordinateY="playData.coordinates.sixthCoordinateY"
+                :functionNumber="6"
+                :clickItem="clickItem" />
+
           <!--SEVENTH ITEM-->
-          <div v-if="playData.selectedDifficulty.type >= 7"
-               class="ballon1"
-               :style="{ left: [playData.coordinates.seventhCoordinateX + 'px'], top: [playData.coordinates.seventhCoordinateY + 'px']}"
-               @click="clickItem(7)"
-          ></div>
+
+          <item :difficultyType="playData.selectedDifficulty.type"
+                :coordinateX="playData.coordinates.seventhCoordinateX"
+                :coordinateY="playData.coordinates.seventhCoordinateY"
+                :functionNumber="7"
+                :clickItem="clickItem"  />
+
         </div>
       </div>
 
@@ -86,6 +99,7 @@ export default {
     SelectGun: () => import('@/modules/main/play/components/SelectGun.vue'),
     TopBar: () => import('@/modules/main/play/components/layouts/TopBar.vue'),
     DeadBar: () => import('@/modules/main/play/components/layouts/DeadBar.vue'),
+    Item: () => import('@/modules/main/play/components/Item.vue'),
   },
   computed: {
     ...mapState('Play', ['playData']),
@@ -107,6 +121,7 @@ export default {
       this.createCustomCoordinate(itemId);
       this.selectSpray();
       this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
+      console.log(this.playData.selectedDifficulty.type);
     },
     clickCounter() {
       if (this.playData.nowStart.playing === true) {
@@ -139,14 +154,6 @@ export default {
 
 }
 
-.ballon1 {
-  position: absolute;
-  /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
-  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
-  border-radius: 100px;
-  width: 100px;
-  height: 100px;
-}
 
 .ballon2 {
   position: absolute;
