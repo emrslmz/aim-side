@@ -26,12 +26,18 @@
 
 
 
-        <div
-            class="ballon"
-            :style="{ left: [playData.target.itemCoordinateX + 'px'], top: [playData.target.itemCoordinateY + 'px']}"
-            @click="clickItem()"
-            v-else
-        ></div>
+        <div v-else>
+          <div
+              class="ballon1"
+              :style="{ left: [playData.coordinates.firstCoordinateX + 'px'], top: [playData.coordinates.firstCoordinateY + 'px']}"
+              @click="clickItem(1)"
+          ></div>
+          <div v-if="playData.selectedDifficulty.type === 2"
+              class="ballon1"
+              :style="{ left: [playData.coordinates.secondCoordinateX + 'px'], top: [playData.coordinates.secondCoordinateY + 'px']}"
+              @click="clickItem(2)"
+          ></div>
+        </div>
       </div>
 
 
@@ -62,7 +68,7 @@ export default {
     ...mapState('CrossAir', ['selectedCrossair']),
   },
   methods: {
-    ...mapActions('Play', ['beforeStartTimer', 'createCoordinate', 'nowStartTimer', 'selectDifficulty']),
+    ...mapActions('Play', ['beforeStartTimer', 'firstTimeCreateCoordinate', 'nowStartTimer', 'selectDifficulty', 'createCustomCoordinate']),
     ...mapActions('Shot', ['selectSpray']),
     ...mapActions('Sounds', ['playSound']),
     ...mapActions('Background', ['selectBackground']),
@@ -72,11 +78,11 @@ export default {
       this.playData.target.x = event.clientX;  //yatay 1850
       this.playData.target.y = event.clientY;  //dikey  800
     },
-    clickItem() {
+    clickItem(itemId) {
       const randomPoint = Math.floor(Math.random() * 10);
       this.playData.point += randomPoint;
       this.playData.kill += 1;
-      this.createCoordinate(this.playData);
+      this.createCustomCoordinate(itemId);
       this.selectSpray();
       this.playSound({kill: this.playData.kill, gunData: this.selectedGun});
     },
@@ -88,7 +94,6 @@ export default {
   },
   created() {
       const number = parseInt(localStorage.getItem("backgroundDataId"));
-      this.createCoordinate(this.playData);
       this.selectBackground(number);
       this.selectCrossair(0);
       this.selectDifficulty(1);
@@ -111,10 +116,19 @@ export default {
   background-repeat: no-repeat;
 }
 
-.ballon {
+.ballon1 {
   position: absolute;
   /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
   background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  border-radius: 100px;
+  width: 100px;
+  height: 100px;
+}
+
+.ballon2 {
+  position: absolute;
+  /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
+  background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
   border-radius: 100px;
   width: 100px;
   height: 100px;

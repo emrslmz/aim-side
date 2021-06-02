@@ -118,19 +118,20 @@ export default {
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('CrossAir', ['selectCrossair']),
-    ...mapActions('Play', ['createCoordinate', 'selectDifficulty']),
+    ...mapActions('Play', ['firstTimeCreateCoordinate', 'selectDifficulty']),
     changeDifficulty() {
       if (this.playData.selectedDifficulty.type === 1) {
         this.selectDifficulty(2);
+        this.firstTimeCreateCoordinate();
       } else if (this.playData.selectedDifficulty.type === 2) {
-        this.selectDifficulty(3);
-      } else if (this.playData.selectedDifficulty.type === 3) {
-        this.selectDifficulty(4);
-      } else if (this.playData.selectedDifficulty.type === 4) {
         this.selectDifficulty(1);
+        this.firstTimeCreateCoordinate();
       }
     }
   },
+  created() {
+    this.firstTimeCreateCoordinate();
+  }
 };
 </script>
 
