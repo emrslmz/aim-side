@@ -93,6 +93,21 @@
     </div>
 
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right-difficulty">
+      <!--ITEM COLOR-->
+      <div class="dropdown-button">
+        <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-palette"></i>
+        </small>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+
+          <small>
+            <span class="dropdown-item" v-for="(color, index) in playData.itemColors" :key="index" @click="changeItemColor(color.id)" :class="playData.selectedItemColor.id === color.id ? 'dropdown-button-active' : ''">
+             {{ color.name }} <i :style="color.style" class="fas fa-fill-drip"></i>
+            </span>
+          </small>
+
+        </div>
+      </div>
       <!--ITEM SIZE-->
       <div class="dropdown-button">
         <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -111,7 +126,7 @@
       <!--DIFFICULTY-->
       <div class="dropdown-button">
         <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-circle"></i>
+          <i class="fas fa-hat-wizard"></i>
         </small>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
@@ -141,16 +156,17 @@ export default {
     ...mapState('Sight', ['sights', 'selectedSight']),
   },
   methods: {
+    ...mapActions('Play', ['selectDifficulty', 'addCoordinate', 'changeItemSize', 'changeItemColor']),
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('Sight', ['selectSight']),
-    ...mapActions('Play', ['selectDifficulty', 'addCoordinate', 'changeItemSize']),
     postDifficulty(difficultyType) {
       this.selectDifficulty(difficultyType);
       this.addCoordinate(difficultyType);
     }
   },
   created() {
+    this.changeItemColor(1);
     this.selectDifficulty(4);
     this.addCoordinate(4);
     this.selectSight(0);

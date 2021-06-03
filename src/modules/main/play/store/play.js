@@ -13,14 +13,13 @@ const state = {
            kill: 0,
            click: 0,
        },
-       coordinates: {
+       coordinateData: {
          id: null,
          coordinateX: 0,
          coordinateY: 0,
-         itemStyle: {
-             itemWidth: 100,
-             itemHeight: 100,
-         },
+         itemWidth: 100,
+         itemHeight: 100,
+         itemColor: {},
        },
        selectedDifficulty: {},
        difficulty: [
@@ -89,6 +88,19 @@ const state = {
                name: 'Big',
                icon: '',
            },
+       ],
+       selectedItemColor: {},
+       itemColors: [
+           {
+               name: 'Default',
+               id: 1,
+               style: 'linear-gradient(to top, #4481eb 0%, #04befe 100%)',
+           },
+           {
+               name: 'Yellow',
+               id: 2,
+               style: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
+           },
        ]
 
    },
@@ -102,23 +114,25 @@ const mutations = {
 
         for (let a = 0; a < difficultyType; a++) {
 
-            const coordinateId = state.playData.coordinates.id = a;
-            const itemWidth = state.playData.coordinates.itemStyle.itemWidth;
-            const itemHeight = state.playData.coordinates.itemStyle.itemHeight;
-            const coordinatesX = state.playData.coordinates.coordinateX = Math.floor(Math.random() * 1700);
-            const coordinatesY = state.playData.coordinates.coordinateY = Math.floor(Math.random() * 750);
-            state.playData.selectedDifficulty.coordinate.push({coordinatesX, coordinatesY, coordinateId, itemWidth, itemHeight});
-        }
-        // console.log(state.playData.selectedDifficulty);
+            const coordinateId = state.playData.coordinateData.id = a;
 
+            const itemWidth = state.playData.coordinateData.itemWidth;
+            const itemHeight = state.playData.coordinateData.itemHeight;
+            const coordinatesX = state.playData.coordinateData.coordinateX = Math.floor(Math.random() * 1700);
+            const coordinatesY = state.playData.coordinateData.coordinateY = Math.floor(Math.random() * 750);
+            const itemColorData = state.playData.selectedItemColor;
+            state.playData.selectedDifficulty.coordinate.push({coordinatesX, coordinatesY, coordinateId, itemWidth, itemHeight, itemColorData});
+        }
+        console.log(state.playData.selectedDifficulty);
     },
     CHANGE_ITEM_SIZE(state, sizeType) {
        state.playData.selectedItemSize = state.playData.itemSize.find(i => i.type === sizeType);
     },
-    CHANGE_COORDINATE_STYLE(state, itemId) {
+    CHANGE_COORDINATE_AND_SIZE(state, itemId) {
       const changeCoordinateStyle = state.playData.selectedDifficulty.coordinate.find(c => c.coordinateId === itemId);
         changeCoordinateStyle.coordinatesX = Math.floor(Math.random() * 1700);
         changeCoordinateStyle.coordinatesY = Math.floor(Math.random() * 750);
+
 
         if (state.playData.selectedItemSize.type === 1) {
             changeCoordinateStyle.itemWidth = 70;
@@ -134,9 +148,10 @@ const mutations = {
             changeCoordinateStyle.itemWidth = 150;
             changeCoordinateStyle.itemHeight = 150;
         }
-
-
     },
+    CHANGE_ITEM_COLOR(state, colorId) {
+        state.playData.selectedItemColor = state.playData.itemColors.find(s => s.id === colorId);
+    }
 };
 
 const actions = {
@@ -162,12 +177,15 @@ const actions = {
     addCoordinate({ commit }, difficultyType) {
         commit('ADD_COORDINATE', difficultyType);
     },
-    changeCoordinateStyle({ commit }, itemId) {
-        commit('CHANGE_COORDINATE_STYLE', itemId);
+    changeCoordinateAndStyle({ commit }, itemId) {
+        commit('CHANGE_COORDINATE_AND_SIZE', itemId);
     },
     changeItemSize({ commit }, sizeType) {
         commit('CHANGE_ITEM_SIZE', sizeType);
-    }
+    },
+    changeItemColor({ commit }, colorId) {
+        commit('CHANGE_ITEM_COLOR', colorId);
+    },
 };
 
 
