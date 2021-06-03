@@ -90,10 +90,38 @@
       </div>
 
     </div>
+
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right-difficulty">
-      <small>{{ playData.selectedDifficulty.name }}</small>
-      <div class="dropdown-button" @click="changeDifficulty">
-        <small><i :class="playData.selectedDifficulty.icon"></i></small> <!--EASY 1-->
+      <!--BALL SIZE-->
+      <div class="dropdown-button">
+        <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-compress-alt"></i>
+        </small>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+
+          <small>
+            <span class="dropdown-item" >
+              321
+            </span>
+          </small>
+
+        </div>
+      </div>
+      <!--DIFFICULTY-->
+
+      <div class="dropdown-button">
+        <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-circle"></i>
+        </small>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+
+          <small>
+            <span class="dropdown-item" v-for="(difficulty, index) in playData.difficulty" :key="index" @click="postDifficulty(difficulty.type)">
+              {{ difficulty.name }} <i :class="difficulty.icon"></i>
+            </span>
+          </small>
+
+        </div>
       </div>
     </div>
   </div>
@@ -114,29 +142,16 @@ export default {
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('CrossAir', ['selectCrossair']),
-    ...mapActions('Play', ['firstTimeCreateCoordinate', 'selectDifficulty']),
-    changeDifficulty() {
-
-      if (this.playData.selectedDifficulty.type === 1) {
-        this.selectDifficulty(2);
-      } else if (this.playData.selectedDifficulty.type === 2) {
-        this.selectDifficulty(3);
-      } else if (this.playData.selectedDifficulty.type === 3) {
-        this.selectDifficulty(4);
-      } else if (this.playData.selectedDifficulty.type === 4) {
-        this.selectDifficulty(5);
-      } else if (this.playData.selectedDifficulty.type === 5) {
-        this.selectDifficulty(6);
-      } else if (this.playData.selectedDifficulty.type === 6) {
-        this.selectDifficulty(7);
-      } else if (this.playData.selectedDifficulty.type === 7) {
-        this.selectDifficulty(1);
-      }
+    ...mapActions('Play', ['selectDifficulty', 'addCoordinate']),
+    postDifficulty(difficultyType) {
+      this.selectDifficulty(difficultyType);
+      this.addCoordinate(difficultyType);
     }
   },
   created() {
-    this.firstTimeCreateCoordinate();
-  }
+    this.selectDifficulty(4);
+    this.addCoordinate(4);
+  },
 };
 </script>
 

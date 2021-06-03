@@ -14,20 +14,9 @@ const state = {
            click: 0,
        },
        coordinates: {
-           firstCoordinateX: 0,
-           firstCoordinateY: 0,
-           secondCoordinateX: null,
-           secondCoordinateY: null,
-           thirdCoordinateX: null,
-           thirdCoordinateY: null,
-           fourthCoordinateX: null,
-           fourthCoordinateY: null,
-           fifthCoordinateX: null,
-           fifthCoordinateY: null,
-           sixthCoordinateX: null,
-           sixthCoordinateY: null,
-           seventhCoordinateX: null,
-           seventhCoordinateY: null,
+         id: null,
+         coordinateX: 0,
+         coordinateY: 0,
        },
        selectedDifficulty: {},
        difficulty: [
@@ -35,90 +24,78 @@ const state = {
                type: 1,
                name: 'Extreme',  // 1 tane çıkcak
                icon: 'fas fa-apple-alt color-blue',
+               coordinateNumber: 1,
+               coordinate: [],
            },
            {
                type: 2,
                name: 'Impossible', //2 tane çıkcak
                icon: 'fas fa-apple-alt color-pruple',
+               coordinateNumber: 1,
+               coordinate: [],
            },
            {
                type: 3,
                name: 'Hard', //3 tane çıkcak
                icon: 'fas fa-apple-alt color-red',
+               coordinateNumber: 1,
+               coordinate: [],
            },
            {
                type: 4,
                name: 'Medium', //4 tane çıkcak
                icon: 'fas fa-apple-alt color-orange',
+               coordinateNumber: 1,
+               coordinate: [],
            },
            {
                type: 5,
                name: 'Easy',  //5 tane çıkcak
                icon: 'fas fa-apple-alt color-yellow',
+               coordinateNumber: 1,
+               coordinate: [],
            },
            {
                type: 6,
                name: 'Beginner',  //6 tane çıkcak
                icon: 'fas fa-apple-alt color-green',
+               coordinateNumber: 1,
+               coordinate: [],
            },
            {
                type: 7,
                name: 'Rookie',  //7 tane çıkcak
                icon: 'fas fa-apple-alt color-lightgreen',
+               coordinateNumber: 1,
+               coordinate: [],
            },
        ],
+
    },
 };
 
 const mutations = {
-    SELECTED_DIFFICULTY(state, dataId) {
-       state.playData.selectedDifficulty = state.playData.difficulty.find(a => a.type === dataId);
-        // console.log(state.playData.selectedDifficulty);
+    SELECT_DIFFICULTY(state, difficultyId) {
+        state.playData.selectedDifficulty = state.playData.difficulty.find(d => d.type === difficultyId);
     },
-    FIRST_TIME_CREATE_COORDINATE(state) {
-        const coordinate = state.playData.coordinates;
+    ADD_COORDINATE(state, difficultyType) {
 
-       if (state.playData.selectedDifficulty.type === 1) {
-           coordinate.firstCoordinateX = Math.floor(Math.random() * 1700);
-           coordinate.firstCoordinateY = Math.floor(Math.random() * 750);
-           console.log(coordinate);
-       } else if (state.playData.selectedDifficulty.type === 4) {
-           coordinate.firstCoordinateX = Math.floor(Math.random() * 1700);
-           coordinate.firstCoordinateY = Math.floor(Math.random() * 750);
-           coordinate.secondCoordinateX = Math.floor(Math.random() * 1700);
-           coordinate.secondCoordinateY = Math.floor(Math.random() * 750);
-           coordinate.thirdCoordinateX = Math.floor(Math.random() * 1700);
-           coordinate.thirdCoordinateY = Math.floor(Math.random() * 750);
-           coordinate.fourthCoordinateX = Math.floor(Math.random() * 1700);
-           coordinate.fourthCoordinateY = Math.floor(Math.random() * 750);
-           console.log(coordinate);
-        }
-    },
-    CREATE_COORDINATE(state, clickItemId) {
-        if (clickItemId === 1) {
-            state.playData.coordinates.firstCoordinateX = Math.floor(Math.random() * 1700);
-            state.playData.coordinates.firstCoordinateY = Math.floor(Math.random() * 750);
-        } else if (clickItemId === 2) {
-            state.playData.coordinates.secondCoordinateX = Math.floor(Math.random() * 1700);
-            state.playData.coordinates.secondCoordinateY = Math.floor(Math.random() * 750);
-        } else if (clickItemId === 3) {
-            state.playData.coordinates.thirdCoordinateX = Math.floor(Math.random() * 1700);
-            state.playData.coordinates.thirdCoordinateY = Math.floor(Math.random() * 750);
-        } else if (clickItemId === 4) {
-            state.playData.coordinates.fourthCoordinateX = Math.floor(Math.random() * 1700);
-            state.playData.coordinates.fourthCoordinateY = Math.floor(Math.random() * 750);
-        }  else if (clickItemId === 5) {
-            state.playData.coordinates.fifthCoordinateX = Math.floor(Math.random() * 1700);
-            state.playData.coordinates.fifthCoordinateY = Math.floor(Math.random() * 750);
-        } else if (clickItemId === 6) {
-            state.playData.coordinates.sixthCoordinateX = Math.floor(Math.random() * 1700);
-            state.playData.coordinates.sixthCoordinateY = Math.floor(Math.random() * 750);
-        } else if (clickItemId === 7) {
-            state.playData.coordinates.seventhCoordinateX = Math.floor(Math.random() * 1700);
-            state.playData.coordinates.seventhCoordinateY = Math.floor(Math.random() * 750);
+        for (let a = 0; a < difficultyType; a++) {
+
+            const coordinateId = state.playData.coordinates.id = a;
+            const coordinatesX = state.playData.coordinates.coordinateX = Math.floor(Math.random() * 1700);
+            const coordinatesY = state.playData.coordinates.coordinateY = Math.floor(Math.random() * 750);
+            state.playData.selectedDifficulty.coordinate.push({coordinatesX, coordinatesY, coordinateId});
         }
 
-    }
+    },
+    CHANGE_COORDINATE(state, itemId) {
+
+      const changeCoordinate = state.playData.selectedDifficulty.coordinate.find(i => i.coordinateId === itemId);
+      changeCoordinate.coordinatesX = Math.floor(Math.random() * 1700);
+      changeCoordinate.coordinatesY = Math.floor(Math.random() * 750);
+
+    },
 };
 
 const actions = {
@@ -132,22 +109,20 @@ const actions = {
         }, 1000);
     },
     nowStartTimer(context, data) {
-    setInterval(() => {
-       if (data.nowStart.playingTime > 0) {
-           data.nowStart.playingTime--;
-       }
-    }, 1000);
+        setInterval(() => {
+           if (data.nowStart.playingTime > 0) {
+               data.nowStart.playingTime--;
+           }
+        }, 1000);
    },
-    firstTimeCreateCoordinate({ commit }) {
-        commit('FIRST_TIME_CREATE_COORDINATE');
-        // data.target.firstCoordinateX = Math.floor(Math.random() * 1700);
-        // data.target.firstCoordinateY = Math.floor(Math.random() * 750);
+    selectDifficulty({ commit }, difficultyType) {
+        commit('SELECT_DIFFICULTY', difficultyType);
     },
-    createCustomCoordinate({ commit }, clickItemId) {
-      commit('CREATE_COORDINATE', clickItemId);
+    addCoordinate({ commit }, difficultyType) {
+        commit('ADD_COORDINATE', difficultyType);
     },
-    selectDifficulty({ commit }, dataId) {
-        commit('SELECTED_DIFFICULTY', dataId);
+    changeCoordinate({ commit }, itemId) {
+        commit('CHANGE_COORDINATE', itemId);
     },
 };
 

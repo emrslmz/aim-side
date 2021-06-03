@@ -24,62 +24,13 @@
 
 
         <div v-else>
-          <!--FIRST ITEM-->
-           <item :difficultyType="playData.selectedDifficulty.type"
-                 :coordinateX="playData.coordinates.firstCoordinateX"
-                 :coordinateY="playData.coordinates.firstCoordinateY"
-                 :functionNumber="1"
-                 :clickItem="clickItem" />
-
-          <!--SECOND ITEM-->
-
-          <item :difficultyType="playData.selectedDifficulty.type"
-                :coordinateX="playData.coordinates.secondCoordinateX"
-                :coordinateY="playData.coordinates.secondCoordinateY"
-                :functionNumber="2"
-                :clickItem="clickItem" />
-
-
-          <!--THIRD ITEM-->
-          <item :difficultyType="playData.selectedDifficulty.type"
-                :coordinateX="playData.coordinates.thirdCoordinateX"
-                :coordinateY="playData.coordinates.thirdCoordinateY"
-                :functionNumber="3"
-                :clickItem="clickItem" />
-
-
-          <!--FOURTH ITEM-->
-
-          <item :difficultyType="playData.selectedDifficulty.type"
-                :coordinateX="playData.coordinates.fourthCoordinateX"
-                :coordinateY="playData.coordinates.fourthCoordinateY"
-                :functionNumber="4"
-                :clickItem="clickItem" />
-
-          <!--FIFTH ITEM-->
-
-          <item :difficultyType="playData.selectedDifficulty.type"
-                :coordinateX="playData.coordinates.fifthCoordinateX"
-                :coordinateY="playData.coordinates.fifthCoordinateY"
-                :functionNumber="5"
-                :clickItem="clickItem" />
-
-          <!--SIXTH ITEM-->
-
-          <item :difficultyType="playData.selectedDifficulty.type"
-                :coordinateX="playData.coordinates.sixthCoordinateX"
-                :coordinateY="playData.coordinates.sixthCoordinateY"
-                :functionNumber="6"
-                :clickItem="clickItem" />
-
-          <!--SEVENTH ITEM-->
-
-          <item :difficultyType="playData.selectedDifficulty.type"
-                :coordinateX="playData.coordinates.seventhCoordinateX"
-                :coordinateY="playData.coordinates.seventhCoordinateY"
-                :functionNumber="7"
-                :clickItem="clickItem"  />
-
+          <div v-for="(item, index) in playData.selectedDifficulty.coordinate" :key="index">
+            <div
+                class="ballon1"
+                :style="{ left: [item.coordinatesX + 'px'], top: [item.coordinatesY + 'px']}"
+                @click="clickItem(item.coordinateId)"
+            ></div>
+          </div>
         </div>
       </div>
 
@@ -99,7 +50,6 @@ export default {
     SelectGun: () => import('@/modules/main/play/components/SelectGun.vue'),
     TopBar: () => import('@/modules/main/play/components/layouts/TopBar.vue'),
     DeadBar: () => import('@/modules/main/play/components/layouts/DeadBar.vue'),
-    Item: () => import('@/modules/main/play/components/Item.vue'),
   },
   computed: {
     ...mapState('Play', ['playData']),
@@ -108,7 +58,7 @@ export default {
     ...mapState('CrossAir', ['selectedCrossair']),
   },
   methods: {
-    ...mapActions('Play', ['beforeStartTimer', 'firstTimeCreateCoordinate', 'nowStartTimer', 'selectDifficulty', 'createCustomCoordinate']),
+    ...mapActions('Play', ['beforeStartTimer', 'nowStartTimer', 'changeCoordinate']),
     ...mapActions('Shot', ['selectSpray']),
     ...mapActions('Sounds', ['playSound']),
     ...mapActions('Background', ['selectBackground']),
@@ -118,9 +68,10 @@ export default {
       const randomPoint = Math.floor(Math.random() * 10);
       this.playData.gameData.point += randomPoint;
       this.playData.gameData.kill += 1;
-      this.createCustomCoordinate(itemId);
-      this.selectSpray();
+
       this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
+
+      this.changeCoordinate(itemId)
 
     },
     clickCounter() {
@@ -133,7 +84,6 @@ export default {
       const number = parseInt(localStorage.getItem("backgroundDataId"));
       this.selectBackground(number);
       this.selectCrossair(0);
-      this.selectDifficulty(4);
 
       if (!localStorage.getItem("backgroundDataId")) {
         localStorage.setItem("backgroundDataId", '5');
@@ -154,6 +104,18 @@ export default {
 
 }
 
+.ballon1 {
+  position: absolute;
+  /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  border-radius: 100px;
+  width: 100px;
+  height: 100px;
+}
+
+.ballon1:hover {
+  border: 2px solid red;
+}
 
 .ballon2 {
   position: absolute;

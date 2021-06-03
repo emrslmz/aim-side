@@ -1,16 +1,15 @@
 <template>
   <div
-      v-if="difficultyType >= functionNumber"
       class="ballon1"
-      :style="[{ left: [coordinateX + 'px'], top: [coordinateY + 'px']}, { width: itemWidth + 'px'}, { height: itemHeight + 'px'}]"
-      @click="clickItem(functionNumber)"
+      :style="{ left: [coordinateX + 'px'], top: [coordinateY + 'px']}"
+      @click="clickItem()"
   ></div>
 </template>
 
 <script>
 export default {
   name: 'Item',
-  props: ['difficultyType', 'coordinateX', 'coordinateY', 'functionNumber', 'clickItem'],
+  props: ['coordinateX', 'coordinateY', 'functionNumber', 'clickItem'],
   data() {
     return {
       itemWidth: null,
@@ -32,6 +31,8 @@ export default {
   /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
   background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
   border-radius: 100px;
+  width: 100px;
+  height: 100px;
 }
 
 .ballon1:hover {
