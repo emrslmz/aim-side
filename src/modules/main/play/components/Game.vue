@@ -27,7 +27,7 @@
           <div v-for="(item, index) in playData.selectedDifficulty.coordinate" :key="index">
             <div
                 class="ballon1"
-                :style="{ left: [item.coordinatesX + 'px'], top: [item.coordinatesY + 'px']}"
+                :style="[{ left: [item.coordinatesX + 'px'], top: [item.coordinatesY + 'px']}, { width: [item.itemWidth + 'px'], height: [item.itemHeight + 'px']}]"
                 @click="clickItem(item.coordinateId)"
             ></div>
           </div>
@@ -68,7 +68,6 @@ export default {
       const randomPoint = Math.floor(Math.random() * 10);
       this.playData.gameData.point += randomPoint;
       this.playData.gameData.kill += 1;
-
       this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
 
       this.changeCoordinate(itemId)
@@ -109,8 +108,8 @@ export default {
   /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
   background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
   border-radius: 100px;
-  width: 100px;
-  height: 100px;
+  /*width: 100px;*/
+  /*height: 100px;*/
 }
 
 .ballon1:hover {

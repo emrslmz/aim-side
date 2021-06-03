@@ -17,6 +17,10 @@ const state = {
          id: null,
          coordinateX: 0,
          coordinateY: 0,
+         itemStyle: {
+             itemWidth: 100,
+             itemHeight: 100,
+         },
        },
        selectedDifficulty: {},
        difficulty: [
@@ -24,52 +28,63 @@ const state = {
                type: 1,
                name: 'Extreme',  // 1 tane çıkcak
                icon: 'fas fa-apple-alt color-blue',
-               coordinateNumber: 1,
                coordinate: [],
            },
            {
                type: 2,
                name: 'Impossible', //2 tane çıkcak
                icon: 'fas fa-apple-alt color-pruple',
-               coordinateNumber: 1,
                coordinate: [],
            },
            {
                type: 3,
                name: 'Hard', //3 tane çıkcak
                icon: 'fas fa-apple-alt color-red',
-               coordinateNumber: 1,
                coordinate: [],
            },
            {
                type: 4,
                name: 'Medium', //4 tane çıkcak
                icon: 'fas fa-apple-alt color-orange',
-               coordinateNumber: 1,
                coordinate: [],
            },
            {
                type: 5,
                name: 'Easy',  //5 tane çıkcak
                icon: 'fas fa-apple-alt color-yellow',
-               coordinateNumber: 1,
                coordinate: [],
            },
            {
                type: 6,
                name: 'Beginner',  //6 tane çıkcak
                icon: 'fas fa-apple-alt color-green',
-               coordinateNumber: 1,
                coordinate: [],
            },
            {
                type: 7,
                name: 'Rookie',  //7 tane çıkcak
                icon: 'fas fa-apple-alt color-lightgreen',
-               coordinateNumber: 1,
                coordinate: [],
            },
        ],
+       selectedItemSize: {},
+       itemSize: [
+           {
+               type: 1,
+               name: 'Small',
+               icon: '',
+           },
+           {
+               type: 2,
+               name: 'Default',
+               icon: '',
+           },
+           {
+               type: 3,
+               name: 'Big',
+               icon: '',
+           },
+       ]
 
    },
 };
@@ -83,18 +98,20 @@ const mutations = {
         for (let a = 0; a < difficultyType; a++) {
 
             const coordinateId = state.playData.coordinates.id = a;
+            const itemWidth = state.playData.coordinates.itemStyle.itemWidth;
+            const itemHeight = state.playData.coordinates.itemStyle.itemHeight;
             const coordinatesX = state.playData.coordinates.coordinateX = Math.floor(Math.random() * 1700);
             const coordinatesY = state.playData.coordinates.coordinateY = Math.floor(Math.random() * 750);
-            state.playData.selectedDifficulty.coordinate.push({coordinatesX, coordinatesY, coordinateId});
+            state.playData.selectedDifficulty.coordinate.push({coordinatesX, coordinatesY, coordinateId, itemWidth, itemHeight});
+
         }
+        console.log(state.playData.selectedDifficulty);
 
     },
     CHANGE_COORDINATE(state, itemId) {
-
       const changeCoordinate = state.playData.selectedDifficulty.coordinate.find(i => i.coordinateId === itemId);
       changeCoordinate.coordinatesX = Math.floor(Math.random() * 1700);
       changeCoordinate.coordinatesY = Math.floor(Math.random() * 750);
-
     },
 };
 

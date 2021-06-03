@@ -92,7 +92,7 @@
     </div>
 
     <div class="d-flex justify-content-end align-items-center top-bar-frame-right-difficulty">
-      <!--BALL SIZE-->
+      <!--ITEM SIZE-->
       <div class="dropdown-button">
         <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-compress-alt"></i>
@@ -100,8 +100,8 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
           <small>
-            <span class="dropdown-item" >
-              321
+            <span class="dropdown-item" v-for="(size, index) in playData.itemSize" :key="index">
+              {{ size.name }}
             </span>
           </small>
 

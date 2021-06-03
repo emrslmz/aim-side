@@ -12,12 +12,12 @@ export default {
   props: ['coordinateX', 'coordinateY', 'functionNumber', 'clickItem'],
   data() {
     return {
-      itemWidth: null,
-      itemHeight: null,
+      itemWidth: 100,
+      itemHeight: 100,
     };
   },
   created() {
-    const size = Math.floor(Math.random() * 50) + 50;
+    const largeSize = Math.floor(Math.random() * 50) + 50;
     this.itemWidth = size
     this.itemHeight = size;
   }
