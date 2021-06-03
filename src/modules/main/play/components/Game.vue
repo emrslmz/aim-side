@@ -6,7 +6,7 @@
     <div
         class="d-flex flex-column justify-content-center game-frame align-items-center text-white"
         @click="clickCounter"
-        :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  { 'background-image' : selectedBackground.style} , selectedCrossair.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedCrossair.folderName + '), auto'} : 'cursor: pointer;']">
+        :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  { 'background-image' : selectedBackground.style} , selectedSight.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedSight.folderName + '), auto'} : 'cursor: pointer;']">
 
       <div v-if="playData.beforeStart.startStatus === false">
         <select-gun />
@@ -55,14 +55,14 @@ export default {
     ...mapState('Play', ['playData']),
     ...mapState('Sounds', ['selectedGun', 'gunSoundMute']),
     ...mapState('Background', ['selectedBackground']),
-    ...mapState('CrossAir', ['selectedCrossair']),
+    ...mapState('Sight', ['selectedSight']),
   },
   methods: {
     ...mapActions('Play', ['beforeStartTimer', 'nowStartTimer', 'changeCoordinateStyle', 'changeItemSize']),
     ...mapActions('Shot', ['selectSpray']),
     ...mapActions('Sounds', ['playSound']),
     ...mapActions('Background', ['selectBackground']),
-    ...mapActions('CrossAir', ['selectCrossair']),
+    ...mapActions('Sight', ['selectSight']),
 
     clickItem(itemId) {
       const randomPoint = Math.floor(Math.random() * 10);
@@ -82,7 +82,7 @@ export default {
   created() {
       const number = parseInt(localStorage.getItem("backgroundDataId"));
       this.selectBackground(number);
-      this.selectCrossair(0);
+      this.selectSight(0);
 
       if (!localStorage.getItem("backgroundDataId")) {
         localStorage.setItem("backgroundDataId", '5');

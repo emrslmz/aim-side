@@ -1,6 +1,6 @@
 const state = {
-    selectedCrossair: {},
-    crossairs: [
+    selectedSight: {},
+    sights: [
         {
             name: 'None',
             id: 0,
@@ -47,14 +47,14 @@ const state = {
 };
 
 const mutations = {
-    SELECT_CROSSAIR(state, dataId) {
-        state.selectedCrossair = state.crossairs.find(a => a.id === dataId);
+    SELECT_SIGHT(state, dataId) {
+        state.selectedSight = state.sights.find(a => a.id === dataId);
     }
 };
 
 const actions = {
-    selectCrossair({ commit }, dataId) {
-        commit('SELECT_CROSSAIR', dataId);
+    selectSight({ commit }, dataId) {
+        commit('SELECT_SIGHT', dataId);
     }
 };
 

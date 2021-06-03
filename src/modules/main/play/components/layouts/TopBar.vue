@@ -40,7 +40,7 @@
         <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="profileDropdown">
 
           <small v-for="(gun, index) in gunSounds" :key="index" @click="selectGun(gun)">
-            <span class="dropdown-item btn btn-sm">
+            <span class="dropdown-item btn btn-sm" :class="selectedGun.id === gun.id ? 'dropdown-button-active' : ''">
               {{ gun.name}}
              <img class="custom-picture" :src="'/assets/images/img/gun/' + gun.gunPic" @click="selectGun(gun)" :alt="gun.name" :title="gun.name" />
               </span>
@@ -48,21 +48,21 @@
 
         </div>
       </div>
-      <!--CROSSAIR-->
+      <!--CROSSHAIR-->
       <div class="dropdown-button">
         <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-crosshairs"></i>
         </small>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
-          <small v-for="(cross, index) in crossairs" :key="index">
-              <span class="dropdown-item" v-if="cross.mode === 2" @click="selectCrossair(cross.id)">
-                    {{ cross.name }}
-                   <img class="custom-picture" :src="'/assets/images/img/crossairs/' + cross.folderName" :alt="cross.name" :title="cross.name"  />
+          <small v-for="(sight, index) in sights" :key="index">
+              <span class="dropdown-item" v-if="sight.mode === 2" @click="selectSight(sight.id)" :class="selectedSight.id === sight.id ? 'dropdown-button-active' : ''">
+                    {{ sight.name }}
+                   <img class="custom-picture" :src="'/assets/images/img/crossairs/' + sight.folderName" :alt="sight.name" :title="sight.name"  />
               </span>
 
-            <span class="dropdown-item" :style="{'background-image' : cross.style}" @click="selectCrossair(cross.id)" v-else>
-                  {{ cross.name }} <i class="fas fa-mouse-pointer"></i>
+            <span class="dropdown-item" :style="{'background-image' : sight.style}" @click="selectSight(sight.id)" :class="selectedSight.id === sight.id ? 'dropdown-button-active' : ''" v-else>
+                  {{ sight.name }} <i class="fas fa-mouse-pointer"></i>
               </span>
           </small>
 
@@ -75,8 +75,8 @@
           </small>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
-            <small v-for="(img, index) in backgrounds" :key="index" :class="selectedBackground.id === img.id ? 'dropdown-button-active' : ''">
-              <span class="dropdown-item" v-if="img.mode === 1" @click="selectBackground(img.id)">
+            <small v-for="(img, index) in backgrounds" :key="index">
+              <span class="dropdown-item" v-if="img.mode === 1" @click="selectBackground(img.id)" :class="selectedBackground.id === img.id ? 'dropdown-button-active' : ''">
                     {{ img.name }}
                    <img class="custom-picture" :src="'/assets/images/img/backgrounds/' + img.style" :alt="img.name" :title="img.name"  />
               </span>
@@ -136,14 +136,14 @@ export default {
   name: 'TopBar',
   computed: {
     ...mapState('Play', ['playData']),
-    ...mapState('Sounds', ['gunSounds', 'gunSoundMute', 'killSoundMute']),
+    ...mapState('Sounds', ['gunSounds', 'gunSoundMute', 'killSoundMute', 'selectedGun']),
     ...mapState('Background', ['backgrounds', 'selectedBackground']),
-    ...mapState('CrossAir', ['crossairs']),
+    ...mapState('Sight', ['sights', 'selectedSight']),
   },
   methods: {
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
-    ...mapActions('CrossAir', ['selectCrossair']),
+    ...mapActions('Sight', ['selectSight']),
     ...mapActions('Play', ['selectDifficulty', 'addCoordinate', 'changeItemSize']),
     postDifficulty(difficultyType) {
       this.selectDifficulty(difficultyType);
@@ -153,6 +153,7 @@ export default {
   created() {
     this.selectDifficulty(4);
     this.addCoordinate(4);
+    this.selectSight(0);
   },
 };
 </script>
