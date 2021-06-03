@@ -58,7 +58,7 @@ export default {
     ...mapState('CrossAir', ['selectedCrossair']),
   },
   methods: {
-    ...mapActions('Play', ['beforeStartTimer', 'nowStartTimer', 'changeCoordinate']),
+    ...mapActions('Play', ['beforeStartTimer', 'nowStartTimer', 'changeCoordinateStyle', 'changeItemSize']),
     ...mapActions('Shot', ['selectSpray']),
     ...mapActions('Sounds', ['playSound']),
     ...mapActions('Background', ['selectBackground']),
@@ -70,7 +70,7 @@ export default {
       this.playData.gameData.kill += 1;
       this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
 
-      this.changeCoordinate(itemId)
+      this.changeCoordinateStyle(itemId);
 
     },
     clickCounter() {
@@ -88,6 +88,7 @@ export default {
         localStorage.setItem("backgroundDataId", '5');
       }
 
+      this.changeItemSize(2);
   },
 };
 

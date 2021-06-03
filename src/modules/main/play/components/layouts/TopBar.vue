@@ -75,7 +75,7 @@
           </small>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
-            <small v-for="(img, index) in backgrounds" :key="index">
+            <small v-for="(img, index) in backgrounds" :key="index" :class="selectedBackground.id === img.id ? 'dropdown-button-active' : ''">
               <span class="dropdown-item" v-if="img.mode === 1" @click="selectBackground(img.id)">
                     {{ img.name }}
                    <img class="custom-picture" :src="'/assets/images/img/backgrounds/' + img.style" :alt="img.name" :title="img.name"  />
@@ -85,6 +85,7 @@
                   {{ img.name }}
               </span>
             </small>
+
 
           </div>
       </div>
@@ -100,7 +101,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
           <small>
-            <span class="dropdown-item" v-for="(size, index) in playData.itemSize" :key="index">
+            <span class="dropdown-item" v-for="(size, index) in playData.itemSize" :key="index" @click="changeItemSize(size.type)" :class="playData.selectedItemSize.type === size.type ? 'dropdown-button-active' : ''">
               {{ size.name }}
             </span>
           </small>
@@ -108,7 +109,6 @@
         </div>
       </div>
       <!--DIFFICULTY-->
-
       <div class="dropdown-button">
         <small class="dropdown-button-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-circle"></i>
@@ -116,13 +116,15 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
           <small>
-            <span class="dropdown-item" v-for="(difficulty, index) in playData.difficulty" :key="index" @click="postDifficulty(difficulty.type)">
-              {{ difficulty.name }} <i :class="difficulty.icon"></i>
+            <span class="dropdown-item" v-for="(difficulty, index) in playData.difficulty" :key="index" @click="postDifficulty(difficulty.type)" :class="playData.selectedDifficulty.type === difficulty.type ? 'dropdown-button-active' : ''">
+              {{ difficulty.name }}
+<!--              <i :class="difficulty.icon"></i>-->
             </span>
           </small>
 
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -135,14 +137,14 @@ export default {
   computed: {
     ...mapState('Play', ['playData']),
     ...mapState('Sounds', ['gunSounds', 'gunSoundMute', 'killSoundMute']),
-    ...mapState('Background', ['backgrounds']),
+    ...mapState('Background', ['backgrounds', 'selectedBackground']),
     ...mapState('CrossAir', ['crossairs']),
   },
   methods: {
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('CrossAir', ['selectCrossair']),
-    ...mapActions('Play', ['selectDifficulty', 'addCoordinate']),
+    ...mapActions('Play', ['selectDifficulty', 'addCoordinate', 'changeItemSize']),
     postDifficulty(difficultyType) {
       this.selectDifficulty(difficultyType);
       this.addCoordinate(difficultyType);
@@ -211,17 +213,23 @@ export default {
   transition: 0.4s;
   z-index: +1;
 }
+
 .dropdown-button:hover {
   opacity: 1;
   transition: 0.4s;
 }
 
+.dropdown-button-active {
+  background-color: #28ffa7;
+}
+
 .dropdown-item {
+  opacity: 1;
   font-weight: bold;
 }
 
 .dropdown-item:hover {
-  background-color: #e9e9e9;
+  background-color: #3ac089;
 }
 
 .color-blue {

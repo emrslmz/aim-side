@@ -81,6 +81,11 @@ const state = {
            },
            {
                type: 3,
+               name: 'Random',
+               icon: '',
+           },
+           {
+               type: 4,
                name: 'Big',
                icon: '',
            },
@@ -103,15 +108,34 @@ const mutations = {
             const coordinatesX = state.playData.coordinates.coordinateX = Math.floor(Math.random() * 1700);
             const coordinatesY = state.playData.coordinates.coordinateY = Math.floor(Math.random() * 750);
             state.playData.selectedDifficulty.coordinate.push({coordinatesX, coordinatesY, coordinateId, itemWidth, itemHeight});
-
         }
-        console.log(state.playData.selectedDifficulty);
+        // console.log(state.playData.selectedDifficulty);
 
     },
-    CHANGE_COORDINATE(state, itemId) {
-      const changeCoordinate = state.playData.selectedDifficulty.coordinate.find(i => i.coordinateId === itemId);
-      changeCoordinate.coordinatesX = Math.floor(Math.random() * 1700);
-      changeCoordinate.coordinatesY = Math.floor(Math.random() * 750);
+    CHANGE_ITEM_SIZE(state, sizeType) {
+       state.playData.selectedItemSize = state.playData.itemSize.find(i => i.type === sizeType);
+    },
+    CHANGE_COORDINATE_STYLE(state, itemId) {
+      const changeCoordinateStyle = state.playData.selectedDifficulty.coordinate.find(c => c.coordinateId === itemId);
+        changeCoordinateStyle.coordinatesX = Math.floor(Math.random() * 1700);
+        changeCoordinateStyle.coordinatesY = Math.floor(Math.random() * 750);
+
+        if (state.playData.selectedItemSize.type === 1) {
+            changeCoordinateStyle.itemWidth = 70;
+            changeCoordinateStyle.itemHeight = 70
+        } else if (state.playData.selectedItemSize.type === 2) {
+            changeCoordinateStyle.itemWidth = 100;
+            changeCoordinateStyle.itemHeight = 100
+        } else if (state.playData.selectedItemSize.type === 3) { //random
+            const coordinateSize = Math.floor(Math.random() * 50) + 50;
+            changeCoordinateStyle.itemWidth = coordinateSize
+            changeCoordinateStyle.itemHeight = coordinateSize
+        } else if (state.playData.selectedItemSize.type === 4) {
+            changeCoordinateStyle.itemWidth = 150;
+            changeCoordinateStyle.itemHeight = 150;
+        }
+
+
     },
 };
 
@@ -138,9 +162,12 @@ const actions = {
     addCoordinate({ commit }, difficultyType) {
         commit('ADD_COORDINATE', difficultyType);
     },
-    changeCoordinate({ commit }, itemId) {
-        commit('CHANGE_COORDINATE', itemId);
+    changeCoordinateStyle({ commit }, itemId) {
+        commit('CHANGE_COORDINATE_STYLE', itemId);
     },
+    changeItemSize({ commit }, sizeType) {
+        commit('CHANGE_ITEM_SIZE', sizeType);
+    }
 };
 
 
