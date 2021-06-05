@@ -27,7 +27,7 @@
           <div v-for="(item, index) in playData.selectedDifficulty.items" :key="index">
             <div
                 class="ballon1"
-                :style="{ left: [item.coordinateX + 'px'], top: [item.coordinateY + 'px']}"
+                :style="[{ left: [item.coordinateX + 'px'], top: [item.coordinateY + 'px']}, { width: [item.itemWidth + 'px']}, { height: [item.itemHeight + 'px' ]}]"
                 @click="clickItem(item.itemId)"
             ></div>
           </div>
@@ -72,7 +72,6 @@ export default {
       this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
 
       this.changeItemPosition(itemId);
-
     },
     clickCounter() {
       if (this.playData.nowStart.playing === true) {
@@ -107,8 +106,8 @@ export default {
   position: absolute;
   background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
   border-radius: 100px;
-  width: 100px;
-  height: 100px;
+  /*width: 100px;*/
+  /*height: 100px;*/
 }
 
 .ballon1:hover {

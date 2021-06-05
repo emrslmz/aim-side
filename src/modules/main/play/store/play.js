@@ -13,15 +13,6 @@ const state = {
            kill: 0,
            click: 0,
        },
-       itemData: {
-         id: null,
-         coordinateX: 0,
-         coordinateY: 0,
-         itemStyle: {
-             itemSize: {},
-             itemColor: {},
-           },
-       },
        selectedDifficulty: {},
        difficulty: [
            {
@@ -70,31 +61,39 @@ const state = {
                id: 7,
                name: 'Rookie',  //7 tane çıkcak
                icon: 'fas fa-apple-alt color-lightgreen',
-               itemNumber: 6,
+               itemNumber: 7,
                items: [],
            },
        ],
        selectedItemSize: {},
-       itemSize: [
+       itemSizes: [
            {
                type: 1,
                name: 'Small',
                icon: '',
+               width: 50,
+               height: 50,
            },
            {
                type: 2,
                name: 'Default',
                icon: '',
+               width: 100,
+               height: 100,
            },
            {
                type: 3,
                name: 'Random',
                icon: '',
+               width: 50,
+               height: 50,
            },
            {
                type: 4,
                name: 'Big',
                icon: '',
+               width: 120,
+               height: 120,
            },
        ],
        selectedItemColor: {},
@@ -115,23 +114,48 @@ const state = {
 
 const mutations = {
     SELECT_DIFFICULTY(state, difficultyId) {
-      state.playData.selectedDifficulty =  state.playData.difficulty.find(d => d.id === difficultyId);
-        console.log(state.playData.selectedDifficulty);
+      const difficultyData = state.playData.selectedDifficulty = state.playData.difficulty.find(a => a.id === difficultyId);
+        const selectedItemSizeType = state.playData.selectedItemSize;
+        const selectedItemColor = state.playData.selectedItemColor;
+
+      for (let a = 0; a < difficultyData.itemNumber; a++) {
+
+          const itemId = a;
+          const coordinateX = Math.floor(Math.random() * 1700);
+          const coordinateY = Math.floor(Math.random() * 750);
+
+          const itemWidth = selectedItemSizeType.width;
+          const itemHeight = selectedItemSizeType.height;
+
+          if (selectedItemSizeType.type === 3 ) {
+              const RandomSize = Math.floor(Math.random() * 50) + 50;
+              selectedItemSizeType.width = RandomSize;
+              selectedItemSizeType.height = RandomSize;
+          }
+
+          const itemColor =
+          state.playData.selectedDifficulty.items.push({ itemId, coordinateX, coordinateY, itemWidth, itemHeight });
+      }
+        console.log(difficultyData);
     },
-    ADD_ITEM(state, numberOfItem) {
-        for (let a = 0; a < numberOfItem; a++) {
-            const itemId = state.playData.itemData.id = a;
-            const coordinateX = state.playData.itemData.coordinateX = Math.floor(Math.random() * 1700);
-            const coordinateY = state.playData.itemData.coordinateY = Math.floor(Math.random() * 750);
-            const itemStyle = state.playData.itemData.itemStyle;
-            state.playData.selectedDifficulty.items.push({itemId, coordinateX, coordinateY, itemStyle});
-        }
+    SELECT_ITEM_SIZE(state, itemSizeType) {
+      state.playData.selectedItemSize = state.playData.itemSizes.find(s => s.type === itemSizeType);
     },
     CHANGE_ITEM_POSITION(state, itemId) {
-        const item =  state.playData.selectedDifficulty.items.find(i => i.itemId === itemId);
-        item.coordinateX = Math.floor(Math.random() * 1700);
-        item.coordinateY = Math.floor(Math.random() * 750);
-    },
+      const item = state.playData.selectedDifficulty.items.find(i => i.itemId === itemId);
+
+      item.coordinateX = Math.floor(Math.random() * 1700);
+      item.coordinateY = Math.floor(Math.random() * 750);
+
+      if (state.playData.selectedItemSize.type === 3 ) {
+          const RandomSize = Math.floor(Math.random() * 50) + 50;
+          item.itemWidth = RandomSize;
+          item.itemHeight = RandomSize;
+      } else {
+          item.itemWidth = state.playData.selectedItemSize.width;
+          item.itemHeight = state.playData.selectedItemSize.height;
+      }
+}
 };
 
 const actions = {
@@ -154,12 +178,12 @@ const actions = {
     selectDifficulty({ commit }, difficultyId) {
         commit('SELECT_DIFFICULTY', difficultyId);
     },
-    addItemData({ commit }, numberOfItem) {
-        commit('ADD_ITEM', numberOfItem);
+    selectItemSize({ commit }, itemSizeType) {
+        commit('SELECT_ITEM_SIZE', itemSizeType);
     },
     changeItemPosition({ commit }, itemId) {
         commit('CHANGE_ITEM_POSITION', itemId);
-    }
+    },
 };
 
 export default {

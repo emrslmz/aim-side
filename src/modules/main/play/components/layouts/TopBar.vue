@@ -116,7 +116,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
           <small>
-            <span class="dropdown-item" v-for="(size, index) in playData.itemSize" :key="index"  :class="playData.selectedItemSize.type === size.type ? 'dropdown-button-active' : ''">
+            <span class="dropdown-item" v-for="(size, index) in playData.itemSizes" :key="index"  :class="playData.selectedItemSize.type === size.type ? 'dropdown-button-active' : ''" @click="selectItemSize(size.type)">
               {{ size.name }}
             </span>
           </small>
@@ -131,7 +131,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
           <small>
-            <span class="dropdown-item" v-for="(difficulty, index) in playData.difficulty" :key="index" @click="postDifficulty(difficulty.id, difficulty.itemNumber)" :class="playData.selectedDifficulty.id === difficulty.id ? 'dropdown-button-active' : ''">
+            <span class="dropdown-item" v-for="(difficulty, index) in playData.difficulty" :key="index"  :class="playData.selectedDifficulty.id === difficulty.id ? 'dropdown-button-active' : ''" @click="postDifficulty(difficulty.id)">
               {{ difficulty.name }}
 <!--              <i :class="difficulty.icon"></i>-->
             </span>
@@ -156,18 +156,21 @@ export default {
     ...mapState('Sight', ['sights', 'selectedSight']),
   },
   methods: {
-    ...mapActions('Play', ['selectDifficulty', 'addItemData']),
+    ...mapActions('Play', ['selectDifficulty', 'selectItemSize']),
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('Sight', ['selectSight']),
-    postDifficulty(difficultyType, numberOfItem) {
-      this.selectDifficulty(difficultyType);
-      this.addItemData(numberOfItem);
+    postDifficulty(difficultyId) {
+      if (this.playData.selectedDifficulty.id === difficultyId) {
+        alert('Already selected. Try choosing another.');
+      } else {
+        this.selectDifficulty(difficultyId);
+      }
     }
   },
   created() {
+    this.selectItemSize(3);
     this.selectDifficulty(4);
-    this.addItemData(4);
     this.selectSight(0);
   },
 };
