@@ -101,7 +101,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
           <small>
-            <span class="dropdown-item" v-for="(color, index) in playData.itemColors" :key="index"  :class="playData.selectedItemColor.id === color.id ? 'dropdown-button-active' : ''">
+            <span class="dropdown-item" v-for="(color, index) in playData.itemColors" :key="index"  :class="playData.selectedItemColor.id === color.id ? 'dropdown-button-active' : ''" @click="selectItemColor(color.id)">
              {{ color.name }} <i :style="color.style" class="fas fa-fill-drip"></i>
             </span>
           </small>
@@ -156,7 +156,7 @@ export default {
     ...mapState('Sight', ['sights', 'selectedSight']),
   },
   methods: {
-    ...mapActions('Play', ['selectDifficulty', 'selectItemSize']),
+    ...mapActions('Play', ['selectDifficulty', 'selectItemSize', 'selectItemColor']),
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('Sight', ['selectSight']),
@@ -169,6 +169,7 @@ export default {
     }
   },
   created() {
+    this.selectItemColor(1);
     this.selectItemSize(3);
     this.selectDifficulty(4);
     this.selectSight(0);

@@ -133,8 +133,8 @@ const mutations = {
               selectedItemSizeType.height = RandomSize;
           }
 
-          const itemColor =
-          state.playData.selectedDifficulty.items.push({ itemId, coordinateX, coordinateY, itemWidth, itemHeight });
+          const itemColor = selectedItemColor.style;
+          state.playData.selectedDifficulty.items.push({ itemId, coordinateX, coordinateY, itemWidth, itemHeight,itemColor });
       }
         console.log(difficultyData);
     },
@@ -146,7 +146,8 @@ const mutations = {
 
       item.coordinateX = Math.floor(Math.random() * 1700);
       item.coordinateY = Math.floor(Math.random() * 750);
-
+      item.itemColor = state.playData.selectedItemColor.style;
+      
       if (state.playData.selectedItemSize.type === 3 ) {
           const RandomSize = Math.floor(Math.random() * 50) + 50;
           item.itemWidth = RandomSize;
@@ -155,7 +156,11 @@ const mutations = {
           item.itemWidth = state.playData.selectedItemSize.width;
           item.itemHeight = state.playData.selectedItemSize.height;
       }
-}
+    },
+    SELECT_ITEM_COLOR(state, itemColorId) {
+        state.playData.selectedItemColor = state.playData.itemColors.find(c => c.id === itemColorId);
+        console.log(state.playData.selectedItemColor);
+    }
 };
 
 const actions = {
@@ -184,6 +189,9 @@ const actions = {
     changeItemPosition({ commit }, itemId) {
         commit('CHANGE_ITEM_POSITION', itemId);
     },
+    selectItemColor({ commit }, itemColorId) {
+        commit('SELECT_ITEM_COLOR', itemColorId);
+    }
 };
 
 export default {

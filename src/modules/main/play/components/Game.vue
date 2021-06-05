@@ -27,7 +27,7 @@
           <div v-for="(item, index) in playData.selectedDifficulty.items" :key="index">
             <div
                 class="ballon1"
-                :style="[{ left: [item.coordinateX + 'px'], top: [item.coordinateY + 'px']}, { width: [item.itemWidth + 'px']}, { height: [item.itemHeight + 'px' ]}]"
+                :style="[{ left: [item.coordinateX + 'px'], top: [item.coordinateY + 'px']}, { width: [item.itemWidth + 'px']}, { height: [item.itemHeight + 'px' ]}, { 'background-image' : [item.itemColor] }]"
                 @click="clickItem(item.itemId)"
             ></div>
           </div>
@@ -104,7 +104,7 @@ export default {
 
 .ballon1 {
   position: absolute;
-  background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+  /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
   border-radius: 100px;
   /*width: 100px;*/
   /*height: 100px;*/
