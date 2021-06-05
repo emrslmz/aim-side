@@ -101,7 +101,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
           <small>
-            <span class="dropdown-item" v-for="(color, index) in playData.itemColors" :key="index" @click="changeItemColor(color.id)" :class="playData.selectedItemColor.id === color.id ? 'dropdown-button-active' : ''">
+            <span class="dropdown-item" v-for="(color, index) in playData.itemColors" :key="index"  :class="playData.selectedItemColor.id === color.id ? 'dropdown-button-active' : ''">
              {{ color.name }} <i :style="color.style" class="fas fa-fill-drip"></i>
             </span>
           </small>
@@ -116,7 +116,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
           <small>
-            <span class="dropdown-item" v-for="(size, index) in playData.itemSize" :key="index" @click="changeItemSize(size.type)" :class="playData.selectedItemSize.type === size.type ? 'dropdown-button-active' : ''">
+            <span class="dropdown-item" v-for="(size, index) in playData.itemSize" :key="index"  :class="playData.selectedItemSize.type === size.type ? 'dropdown-button-active' : ''">
               {{ size.name }}
             </span>
           </small>
@@ -131,7 +131,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
 
           <small>
-            <span class="dropdown-item" v-for="(difficulty, index) in playData.difficulty" :key="index" @click="postDifficulty(difficulty.type)" :class="playData.selectedDifficulty.type === difficulty.type ? 'dropdown-button-active' : ''">
+            <span class="dropdown-item" v-for="(difficulty, index) in playData.difficulty" :key="index" @click="postDifficulty(difficulty.id, difficulty.itemNumber)" :class="playData.selectedDifficulty.id === difficulty.id ? 'dropdown-button-active' : ''">
               {{ difficulty.name }}
 <!--              <i :class="difficulty.icon"></i>-->
             </span>
@@ -156,19 +156,18 @@ export default {
     ...mapState('Sight', ['sights', 'selectedSight']),
   },
   methods: {
-    ...mapActions('Play', ['selectDifficulty', 'addCoordinate', 'changeItemSize', 'changeItemColor']),
+    ...mapActions('Play', ['selectDifficulty', 'addItemData']),
     ...mapActions('Sounds', ['selectGun', 'changeVolumeKillSound', 'changeVolumeGunSound']),
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('Sight', ['selectSight']),
-    postDifficulty(difficultyType) {
+    postDifficulty(difficultyType, numberOfItem) {
       this.selectDifficulty(difficultyType);
-      this.addCoordinate(difficultyType);
+      this.addItemData(numberOfItem);
     }
   },
   created() {
-    this.changeItemColor(1);
     this.selectDifficulty(4);
-    this.addCoordinate(4);
+    this.addItemData(4);
     this.selectSight(0);
   },
 };

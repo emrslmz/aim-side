@@ -24,11 +24,11 @@
 
 
         <div v-else>
-          <div v-for="(item, index) in playData.selectedDifficulty.coordinate" :key="index">
+          <div v-for="(item, index) in playData.selectedDifficulty.items" :key="index">
             <div
                 class="ballon1"
-                :style="[{ left: [item.coordinatesX + 'px'], top: [item.coordinatesY + 'px']}, { width: [item.itemWidth + 'px'], height: [item.itemHeight + 'px']}, { 'background-image': item.itemColorData.style }]"
-                @click="clickItem(item.coordinateId)"
+                :style="{ left: [item.coordinateX + 'px'], top: [item.coordinateY + 'px']}"
+                @click="clickItem(item.itemId)"
             ></div>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default {
     ...mapState('Sight', ['selectedSight']),
   },
   methods: {
-    ...mapActions('Play', ['beforeStartTimer', 'nowStartTimer', 'changeCoordinateAndStyle', 'changeItemSize']),
+    ...mapActions('Play', ['beforeStartTimer', 'nowStartTimer', 'changeItemPosition']),
     ...mapActions('Shot', ['selectSpray']),
     ...mapActions('Sounds', ['playSound']),
     ...mapActions('Background', ['selectBackground']),
@@ -68,9 +68,10 @@ export default {
       const randomPoint = Math.floor(Math.random() * 10);
       this.playData.gameData.point += randomPoint;
       this.playData.gameData.kill += 1;
+
       this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
 
-      this.changeCoordinateAndStyle(itemId);
+      this.changeItemPosition(itemId);
 
     },
     clickCounter() {
@@ -87,8 +88,6 @@ export default {
       if (!localStorage.getItem("backgroundDataId")) {
         localStorage.setItem("backgroundDataId", '5');
       }
-
-      this.changeItemSize(2);
   },
 };
 
@@ -106,10 +105,10 @@ export default {
 
 .ballon1 {
   position: absolute;
-  /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
+  background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
   border-radius: 100px;
-  /*width: 100px;*/
-  /*height: 100px;*/
+  width: 100px;
+  height: 100px;
 }
 
 .ballon1:hover {

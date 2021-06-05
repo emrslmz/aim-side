@@ -13,57 +13,65 @@ const state = {
            kill: 0,
            click: 0,
        },
-       coordinateData: {
+       itemData: {
          id: null,
          coordinateX: 0,
          coordinateY: 0,
-         itemWidth: 100,
-         itemHeight: 100,
-         itemColor: {},
+         itemStyle: {
+             itemSize: {},
+             itemColor: {},
+           },
        },
        selectedDifficulty: {},
        difficulty: [
            {
-               type: 1,
+               id: 1,
                name: 'Extreme',  // 1 tane çıkcak
                icon: 'fas fa-apple-alt color-blue',
-               coordinate: [],
+               itemNumber: 1,
+               items: [],
            },
            {
-               type: 2,
+               id: 2,
                name: 'Impossible', //2 tane çıkcak
                icon: 'fas fa-apple-alt color-pruple',
-               coordinate: [],
+               itemNumber: 2,
+               items: [],
            },
            {
-               type: 3,
+               id: 3,
                name: 'Hard', //3 tane çıkcak
                icon: 'fas fa-apple-alt color-red',
-               coordinate: [],
+               itemNumber: 3,
+               items: [],
            },
            {
-               type: 4,
+               id: 4,
                name: 'Medium', //4 tane çıkcak
                icon: 'fas fa-apple-alt color-orange',
-               coordinate: [],
+               itemNumber: 4,
+               items: [],
            },
            {
-               type: 5,
+               id: 5,
                name: 'Easy',  //5 tane çıkcak
                icon: 'fas fa-apple-alt color-yellow',
-               coordinate: [],
+               itemNumber: 5,
+               items: [],
            },
            {
-               type: 6,
+               id: 6,
                name: 'Beginner',  //6 tane çıkcak
                icon: 'fas fa-apple-alt color-green',
-               coordinate: [],
+               itemNumber: 6,
+               items: [],
            },
            {
-               type: 7,
+               id: 7,
                name: 'Rookie',  //7 tane çıkcak
                icon: 'fas fa-apple-alt color-lightgreen',
-               coordinate: [],
+               itemNumber: 6,
+               items: [],
            },
        ],
        selectedItemSize: {},
@@ -102,56 +110,28 @@ const state = {
                style: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
            },
        ]
-
    },
 };
 
 const mutations = {
     SELECT_DIFFICULTY(state, difficultyId) {
-        state.playData.selectedDifficulty = state.playData.difficulty.find(d => d.type === difficultyId);
-    },
-    ADD_COORDINATE(state, difficultyType) {
-
-        for (let a = 0; a < difficultyType; a++) {
-
-            const coordinateId = state.playData.coordinateData.id = a;
-
-            const itemWidth = state.playData.coordinateData.itemWidth;
-            const itemHeight = state.playData.coordinateData.itemHeight;
-            const coordinatesX = state.playData.coordinateData.coordinateX = Math.floor(Math.random() * 1700);
-            const coordinatesY = state.playData.coordinateData.coordinateY = Math.floor(Math.random() * 750);
-            const itemColorData = state.playData.selectedItemColor;
-            state.playData.selectedDifficulty.coordinate.push({coordinatesX, coordinatesY, coordinateId, itemWidth, itemHeight, itemColorData});
-        }
+      state.playData.selectedDifficulty =  state.playData.difficulty.find(d => d.id === difficultyId);
         console.log(state.playData.selectedDifficulty);
     },
-    CHANGE_ITEM_SIZE(state, sizeType) {
-       state.playData.selectedItemSize = state.playData.itemSize.find(i => i.type === sizeType);
-    },
-    CHANGE_COORDINATE_AND_SIZE(state, itemId) {
-      const changeCoordinateStyle = state.playData.selectedDifficulty.coordinate.find(c => c.coordinateId === itemId);
-        changeCoordinateStyle.coordinatesX = Math.floor(Math.random() * 1700);
-        changeCoordinateStyle.coordinatesY = Math.floor(Math.random() * 750);
-
-
-        if (state.playData.selectedItemSize.type === 1) {
-            changeCoordinateStyle.itemWidth = 70;
-            changeCoordinateStyle.itemHeight = 70
-        } else if (state.playData.selectedItemSize.type === 2) {
-            changeCoordinateStyle.itemWidth = 100;
-            changeCoordinateStyle.itemHeight = 100
-        } else if (state.playData.selectedItemSize.type === 3) { //random
-            const coordinateSize = Math.floor(Math.random() * 50) + 50;
-            changeCoordinateStyle.itemWidth = coordinateSize
-            changeCoordinateStyle.itemHeight = coordinateSize
-        } else if (state.playData.selectedItemSize.type === 4) {
-            changeCoordinateStyle.itemWidth = 150;
-            changeCoordinateStyle.itemHeight = 150;
+    ADD_ITEM(state, numberOfItem) {
+        for (let a = 0; a < numberOfItem; a++) {
+            const itemId = state.playData.itemData.id = a;
+            const coordinateX = state.playData.itemData.coordinateX = Math.floor(Math.random() * 1700);
+            const coordinateY = state.playData.itemData.coordinateY = Math.floor(Math.random() * 750);
+            const itemStyle = state.playData.itemData.itemStyle;
+            state.playData.selectedDifficulty.items.push({itemId, coordinateX, coordinateY, itemStyle});
         }
     },
-    CHANGE_ITEM_COLOR(state, colorId) {
-        state.playData.selectedItemColor = state.playData.itemColors.find(s => s.id === colorId);
-    }
+    CHANGE_ITEM_POSITION(state, itemId) {
+        const item =  state.playData.selectedDifficulty.items.find(i => i.itemId === itemId);
+        item.coordinateX = Math.floor(Math.random() * 1700);
+        item.coordinateY = Math.floor(Math.random() * 750);
+    },
 };
 
 const actions = {
@@ -166,28 +146,21 @@ const actions = {
     },
     nowStartTimer(context, data) {
         setInterval(() => {
-           if (data.nowStart.playingTime > 0) {
-               data.nowStart.playingTime--;
-           }
+            if (data.nowStart.playingTime > 0) {
+                data.nowStart.playingTime--;
+            }
         }, 1000);
-   },
-    selectDifficulty({ commit }, difficultyType) {
-        commit('SELECT_DIFFICULTY', difficultyType);
     },
-    addCoordinate({ commit }, difficultyType) {
-        commit('ADD_COORDINATE', difficultyType);
+    selectDifficulty({ commit }, difficultyId) {
+        commit('SELECT_DIFFICULTY', difficultyId);
     },
-    changeCoordinateAndStyle({ commit }, itemId) {
-        commit('CHANGE_COORDINATE_AND_SIZE', itemId);
+    addItemData({ commit }, numberOfItem) {
+        commit('ADD_ITEM', numberOfItem);
     },
-    changeItemSize({ commit }, sizeType) {
-        commit('CHANGE_ITEM_SIZE', sizeType);
-    },
-    changeItemColor({ commit }, colorId) {
-        commit('CHANGE_ITEM_COLOR', colorId);
-    },
+    changeItemPosition({ commit }, itemId) {
+        commit('CHANGE_ITEM_POSITION', itemId);
+    }
 };
-
 
 export default {
     namespaced: true,
