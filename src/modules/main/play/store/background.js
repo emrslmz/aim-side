@@ -2,18 +2,6 @@ const state = {
     selectedBackground: {},
     backgrounds: [
         {
-            name: 'Default',
-            id: 0,
-            mode: 2,  // 1= picture, 2= gardient
-            style: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',  // 1= picture, 2= gardient
-        },
-        {
-            name: 'Pruple',
-            id: 5,
-            mode: 2,
-            style: 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)',
-        },
-        {
             name: 'Ascent 1',
             id: 1,
             mode: 1,  // 1= picture, 2= gardient
@@ -74,6 +62,18 @@ const state = {
             style: 'breeze_2.jpg',
         },
         {
+            name: 'Default',
+            id: 0,
+            mode: 2,  // 1= picture, 2= gardient
+            style: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',  // 1= picture, 2= gardient
+        },
+        {
+            name: 'Pruple',
+            id: 5,
+            mode: 2,
+            style: 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)',
+        },
+        {
             name: 'Dark',
             id: 12,
             mode: 2,
@@ -85,7 +85,18 @@ const state = {
             mode: 2,
             style: 'linear-gradient(to top, #4481eb 0%, #04befe 100%)',
         },
-
+        {
+            name: 'White',
+            id: 14,
+            mode: 2,
+            style: 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
+        },
+        {
+            name: 'Gray',
+            id: 15,
+            mode: 2,
+            style: 'linear-gradient(to right, #868f96 0%, #596164 100%)',
+        },
     ]
 };
 const mutations = {

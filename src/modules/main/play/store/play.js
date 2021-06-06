@@ -108,16 +108,26 @@ const state = {
                id: 2,
                style: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
            },
+           {
+               name: 'Dark',
+               id: 3,
+               style: 'linear-gradient(to right, #434343 0%, black 100%)',
+           },
+           {
+               name: 'White',
+               id: 4,
+               style: 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
+           },
        ]
    },
 };
-
 const mutations = {
     SELECT_DIFFICULTY(state, difficultyId) {
       const difficultyData = state.playData.selectedDifficulty = state.playData.difficulty.find(a => a.id === difficultyId);
         const selectedItemSizeType = state.playData.selectedItemSize;
         const selectedItemColor = state.playData.selectedItemColor;
 
+        state.playData.selectedDifficulty.items = [];
       for (let a = 0; a < difficultyData.itemNumber; a++) {
 
           const itemId = a;
@@ -147,7 +157,7 @@ const mutations = {
       item.coordinateX = Math.floor(Math.random() * 1700);
       item.coordinateY = Math.floor(Math.random() * 750);
       item.itemColor = state.playData.selectedItemColor.style;
-      
+
       if (state.playData.selectedItemSize.type === 3 ) {
           const RandomSize = Math.floor(Math.random() * 50) + 50;
           item.itemWidth = RandomSize;

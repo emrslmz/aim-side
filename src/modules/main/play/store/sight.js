@@ -49,6 +49,8 @@ const state = {
 const mutations = {
     SELECT_SIGHT(state, dataId) {
         state.selectedSight = state.sights.find(a => a.id === dataId);
+        localStorage.setItem("sightId", dataId);
+
     }
 };
 

@@ -26,7 +26,7 @@
         <div v-else>
           <div v-for="(item, index) in playData.selectedDifficulty.items" :key="index">
             <div
-                class="ballon1"
+                class="itemStyle"
                 :style="[{ left: [item.coordinateX + 'px'], top: [item.coordinateY + 'px']}, { width: [item.itemWidth + 'px']}, { height: [item.itemHeight + 'px' ]}, { 'background-image' : [item.itemColor] }]"
                 @click="clickItem(item.itemId)"
             ></div>
@@ -80,13 +80,20 @@ export default {
     }
   },
   created() {
-      const number = parseInt(localStorage.getItem("backgroundDataId"));
-      this.selectBackground(number);
-      this.selectSight(0);
-
-      if (!localStorage.getItem("backgroundDataId")) {
+      if (localStorage.getItem("backgroundDataId") !== undefined) {
         localStorage.setItem("backgroundDataId", '5');
       }
+
+      if (localStorage.getItem("sightId") !== undefined) {
+        localStorage.setItem("sightId", '0');
+      }
+
+      const backgroundDataId = parseInt(localStorage.getItem("backgroundDataId"));
+      const sightId = parseInt(localStorage.getItem("sightId"));
+      this.selectBackground(backgroundDataId);
+      this.selectSight(sightId);
+
+
   },
 };
 
@@ -102,7 +109,7 @@ export default {
 
 }
 
-.ballon1 {
+.itemStyle {
   position: absolute;
   /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
   border-radius: 100px;
@@ -110,8 +117,8 @@ export default {
   /*height: 100px;*/
 }
 
-.ballon1:hover {
-  border: 2px solid red;
+.itemStyle:hover {
+  border: 1px solid red;
 }
 
 .ballon2 {

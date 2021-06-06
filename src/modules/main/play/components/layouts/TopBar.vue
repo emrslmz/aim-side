@@ -161,18 +161,13 @@ export default {
     ...mapActions('Background', ['selectBackground']),
     ...mapActions('Sight', ['selectSight']),
     postDifficulty(difficultyId) {
-      if (this.playData.selectedDifficulty.id === difficultyId) {
-        alert('Already selected. Try choosing another.');
-      } else {
         this.selectDifficulty(difficultyId);
-      }
     }
   },
   created() {
     this.selectItemColor(1);
     this.selectItemSize(3);
     this.selectDifficulty(4);
-    this.selectSight(0);
   },
 };
 </script>
