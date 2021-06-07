@@ -8,17 +8,17 @@
 
       <div class="d-flex flex-column justify-content-center align-items-center">
 
-        <div class="d-flex flex-row align-items-center col-12">
+        <div class="d-flex flex-row align-items-center col-12 mt-5">
           <div class="text-right col-6">
+            <h1><i class="fas fa-ghost"></i></h1>
+          </div>
+          <div class="text-left col-6">
             <h4>First step</h4>
             <p>Select the weapon you want to use.</p>
           </div>
-          <div class="text-left col-6">
-           <h1><i class="fas fa-ghost"></i></h1>
-          </div>
         </div>
 
-        <div class="d-flex flex-row align-items-end col-12">
+        <div class="d-flex flex-row align-items-end col-12 my-5">
           <div class="text-right col-6">
             <h4>Personalization step</h4>
             <p>You can change the crosshairs if you want.</p>
@@ -26,24 +26,22 @@
             <p>You can change the target size if you want.</p>
             <p>You can change the target color if you want.</p>
             <p>You can change the number of targets/difficulty if you want.</p>
-            <p>You can change the crosshair style if you want.</p>
           </div>
           <div class="text-left col-6">
-            <h1><i class="fas fa-ghost"></i></h1>
+            <h1><i class="fas fa-crosshairs"></i></h1>
             <h1><i class="fas fa-compress-alt"></i></h1>
             <h1><i class="fas fa-palette"></i></h1>
             <h1><i class="fas fa-hat-wizard"></i></h1>
-            <h1><i class="fas fa-crosshairs"></i></h1>
           </div>
         </div>
 
-        <div class="d-flex flex-row align-items-end col-12">
+        <div class="d-flex flex-row align-items-end col-12 mb-5">
           <div class="text-right col-6">
-            <h4>Other steps</h4>
-            <p>Have fun and evolve!</p>
+            <h1><i class="far fa-smile-beam"></i></h1>
           </div>
           <div class="text-left col-6">
-           <h1><i class="far fa-smile-beam"></i></h1>
+            <h4>Other steps</h4>
+            <p>Have fun and evolve!</p>
           </div>
         </div>
 
@@ -54,6 +52,15 @@
           <div>
             <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pNWpvZj9OuI?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
+
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="text-center" v-if="helpful === false">
+              <b>Were the explanations helpful?</b>
+              <button class="btn btn-success btn-sm w-100 mt-2" @click="helpful = true">Yes</button>
+              <button class="btn btn-danger btn-sm w-100 my-2" @click="helpful = true">No</button>
+            </div>
+            <div class="my-5" v-else><b>Thanks for your return!</b></div>
+          </div>
         </div>
 
 
@@ -63,7 +70,15 @@
 <!--  <div class="tutorial-picture" style="background-image: url('/assets/images/img/tutorial/select-gun.jpg')"></div>-->
 </template>
 
-
+<script>
+export default {
+  data() {
+    return {
+      helpful: false,
+    };
+  },
+};
+</script>
 
 <style scoped>
 .text-spacing5 {
