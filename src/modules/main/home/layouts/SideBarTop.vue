@@ -4,18 +4,18 @@
 
      <div>
        <router-link to="/">
-         <small><i class="fas fa-home"></i></small>
+         <small title="Home"><i class="fas fa-home"></i></small>
        </router-link>
      </div>
 
       <div>
         <router-link to="/play">
-          <small><i class="fas fa-play"></i></small>
+          <small title="Play"><i class="fas fa-play"></i></small>
         </router-link>
       </div>
 
      <div data-toggle="modal" data-target="#menu">
-         <small><i class="fas fa-th-large"></i></small>
+         <small title="Quick Menu"><i class="fas fa-th-large"></i></small>
      </div>
 
      <!-- Modal -->
@@ -34,14 +34,14 @@
                 <router-link to="/">
                   <div class="menu-box" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-home"></i>
-                    <small>Home</small>
+                    <small title="Home">Home</small>
                   </div>
                 </router-link>
 
                 <router-link to="/play">
                   <div class="menu-box" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-play"></i>
-                    <small>Play</small>
+                    <small title="Play">Play</small>
                   </div>
                 </router-link>
               </div>
@@ -50,14 +50,14 @@
               <router-link to="/how-it-works">
                 <div class="menu-box" data-dismiss="modal" aria-label="Close">
                   <i class="fas fa-question"></i>
-                  <small>Tutorial</small>
+                  <small title="How it Works">Tutorial</small>
                 </div>
               </router-link>
 
               <router-link to="/conditions">
                 <div class="menu-box" data-dismiss="modal" aria-label="Close">
                   <i class="fas fa-file"></i>
-                  <small>Terms & Conditions</small>
+                  <small title="Terms and Conditions">Terms & Conditions</small>
                 </div>
               </router-link>
             </div>
@@ -66,7 +66,7 @@
               <router-link to="/about">
                 <div class="menu-box" data-dismiss="modal" aria-label="Close">
                   <i class="fas fa-atlas"></i>
-                  <small>About</small>
+                  <small title="About">About</small>
                 </div>
               </router-link>
             </div>
@@ -74,9 +74,7 @@
 
            </div>
 
-           <div class="modal-footer">
-
-           </div>
+           <div class="modal-footer"></div>
          </div>
        </div>
      </div>
