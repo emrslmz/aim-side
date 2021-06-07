@@ -1,6 +1,7 @@
 <template>
  <div>
    <div class="body">
+     <side-bar-top />
      <the-header />
      <home-page v-if="$route.name === 'HomePageDashboard'" />
      <router-view />
@@ -16,6 +17,7 @@ export default {
     HomePage: () => import('@/modules/main/home/components/HomePage.vue'),
     TheHeader: () => import('@/modules/main/home/layouts/TheHeader.vue'),
     TheFooter: () => import('@/modules/main/home/layouts/TheFooter.vue'),
+    SideBarTop: () => import('@/modules/main/home/layouts/SideBarTop.vue'),
   },
 };
 </script>
