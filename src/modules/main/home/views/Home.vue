@@ -16,6 +16,9 @@ export default {
     HomePage: () => import('@/modules/main/home/components/HomePage.vue'),
     TheHeader: () => import('@/modules/main/home/layouts/TheHeader.vue'),
     TheFooter: () => import('@/modules/main/home/layouts/TheFooter.vue'),
+  },
+  created() {
+    alert('Our site is currently in BETA version. The closest one. Sitemiz şu anda BETA sürümündedirr. En yakın sürede görüşmek üzere.');
   }
 };
 </script>
@@ -27,7 +30,6 @@ export default {
   min-height: 95vh;
   width: 100%;
 }
-
 
 ::-webkit-scrollbar {
   width: 5px;

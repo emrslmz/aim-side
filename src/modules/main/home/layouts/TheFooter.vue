@@ -21,7 +21,8 @@
   width: 100%;
   bottom: 0;
   left: 0;
-  height: 5vh;
+  height: 6vh;
+  position: absolute;
   border-top: 5px solid #d42053;
   border-right: none;
   border-bottom: none;
