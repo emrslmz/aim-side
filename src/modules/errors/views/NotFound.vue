@@ -17,6 +17,8 @@
             </router-link>
           </div>
         </div>
+        <small>/Aim Side</small>
+
       </div>
       <div class="load-area">
         <h1><i class="fas fa-circle-notch fa-spin"></i></h1>
