@@ -10,11 +10,12 @@
 
       <div v-if="playData.beforeStart.startStatus === false">
         <select-gun />
+
       </div>
 
       <div v-else>
         <div class="text-center" v-if="playData.nowStart.playing === false">
-          <h1 v-if="playData.beforeStart.time > -1"> {{ playData.beforeStart.time }}</h1>
+          <h1 v-if="playData.beforeStart.time > -1"><i>{{ playData.beforeStart.time }}</i></h1>
           <div>
             <h5 class="starting-text" v-if="playData.beforeStart.time > 0">Will start soon!</h5>
             <h5 class="good-luck-text" v-else>Good Luck!</h5>
@@ -111,45 +112,25 @@ export default {
 
 .itemStyle {
   position: absolute;
-  /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
   border-radius: 100px;
-  /*width: 100px;*/
-  /*height: 100px;*/
 }
 
 .itemStyle:hover {
   border: 1px solid red;
 }
 
-.ballon2 {
-  position: absolute;
-  /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
-  background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
-  border-radius: 100px;
-  width: 100px;
-  height: 100px;
-}
-
-
-
 .starting-text {
   display: block;
   font-size: 40px;
   color: #f1ebe5;
-  text-shadow: 10px 10px 25px rgb(81,67,21),
-  -10px 10px 25px rgb(81,67,21),
-  -10px -10px 25px rgb(81,67,21),
-  10px -10px 25px rgb(81,67,21);
+  text-shadow: 1px 1px 10px rgb(21, 31, 81);
 }
 
 .good-luck-text {
   display: block;
   font-size: 40px;
   color: #f1ebe5;
-  text-shadow: 10px 10px 25px rgb(243, 8, 98),
-  -10px 10px 25px rgb(81, 21, 65),
-  -10px -10px 25px rgb(81, 21, 36),
-  10px -10px 25px rgb(81, 21, 31);
+  text-shadow: 1px 1px 10px rgb(243, 8, 98);
 }
 
 .ready-button {

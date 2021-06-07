@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="d-flex flex-column justify-content-center align-items-center top-bar-frame-center px-4">
-      <h6>Puan: {{ playData.gameData.point }}</h6>
-      <h6><small><span style="font-size: 12px;">Kill/Bullet:</span> {{ playData.gameData.kill }}/ <span class="text-info">{{ playData.gameData.click }}</span></small></h6>
+      <h6>Point: {{ playData.gameData.point }}</h6>
+      <i><h6><small><span style="font-size: 12px;">Kill/Bullet:</span> {{ playData.gameData.kill }}/ <span class="text-primary">{{ playData.gameData.click }}</span></small></h6></i>
       <h6>
-        <span style="font-size: 12px; color: #ff4040">Miss: {{ playData.gameData.click - playData.gameData.kill }} </span>
+        <span style="font-size: 12px">Miss: {{ playData.gameData.click - playData.gameData.kill }} </span>
         <small><i class="far fa-clock pl-2"></i><i> {{ playData.nowStart.playingTime }}</i></small>
       </h6>
 
@@ -166,7 +166,7 @@ export default {
   },
   created() {
     this.selectItemColor(1);
-    this.selectItemSize(3);
+    this.selectItemSize(2);
     this.selectDifficulty(4);
   },
 };

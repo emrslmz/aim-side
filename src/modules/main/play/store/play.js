@@ -2,11 +2,11 @@ const state = {
    playData: {
        beforeStart: {
            startStatus: false,
-           time: 1,
+           time: 3,
        },
        nowStart: {
            playing: false,  // now start run
-           playingTime: 120,  //2minutes
+           playingTime: 124,  //2minutes
        },
        gameData: {
            point: 0,

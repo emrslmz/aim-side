@@ -41,7 +41,7 @@ export default {
 .select-gun-frame {
   width: 800px;
   min-height: 300px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 15px;
   background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
   background-blend-mode: screen;
@@ -75,6 +75,7 @@ export default {
 .gun-picture:hover {
   opacity: 1;
   transition: 0.3s;
+  height: 55px;
 }
 
 
