@@ -14,8 +14,8 @@
         </router-link>
       </div>
 
-     <div data-toggle="modal" data-target="#menu">
-         <small title="Quick Menu"><i class="fas fa-th-large"></i></small>
+     <div>
+         <small title="Quick Menu"><i data-toggle="modal" data-target="#menu" class="fas fa-th-large"></i></small>
      </div>
 
      <!-- Modal -->

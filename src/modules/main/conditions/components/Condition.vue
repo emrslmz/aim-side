@@ -1,6 +1,6 @@
 <template>
   <div>
-   <div class="d-flex flex-column justify-content-center align-items-center condition-home">
+   <div class="d-flex flex-column justify-content-center align-items-center condition-home pt-5 mt-3">
      <div class="text-center">
        <h2 class="valorant-font">Aim Side</h2>
        <h6 class="text-spacing5">Privacy & Terms</h6>
