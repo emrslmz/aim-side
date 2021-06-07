@@ -17,17 +17,14 @@ export default {
     TheHeader: () => import('@/modules/main/home/layouts/TheHeader.vue'),
     TheFooter: () => import('@/modules/main/home/layouts/TheFooter.vue'),
   },
-  created() {
-    alert('Our site is currently in BETA version. See you soon. Sitemiz şu anda BETA sürümündedirr. En yakın sürede görüşmek üzere.');
-  }
 };
 </script>
 
 
 <style>
 .body {
-  background-color: #F7F7F7;
-  min-height: 95vh;
+  background-color: #E9E9E9;
+  min-height: 94vh;
   width: 100%;
 }
 

@@ -1,8 +1,9 @@
 import Play from '@/modules/main/play/router';
+import Condition from '@/modules/main/conditions/router';
 
 export default [{
     path: '/',
     name: 'HomePageDashboard',
     component: () => import('@/modules/main/home/views/Home.vue'),
-    children: [...Play],
+    children: [...Play, ...Condition],
 }];
