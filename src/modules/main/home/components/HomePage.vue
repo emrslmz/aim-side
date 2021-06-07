@@ -152,7 +152,6 @@ export default {
   transition: 0.5s;
   transform: skewY(-2deg);
   color: #ff4040;
-
 }
 
 .game-button{

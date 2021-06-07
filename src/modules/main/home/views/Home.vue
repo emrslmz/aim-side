@@ -24,7 +24,7 @@ export default {
 <style>
 .body {
   background-color: #E9E9E9;
-  min-height: 94vh;
+  min-height: 93vh;
   width: 100%;
 }
 

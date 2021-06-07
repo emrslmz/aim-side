@@ -102,7 +102,7 @@ export default {
 
 <style scoped>
 .game-frame {
-  min-height: 94vh;
+  min-height: 93vh;
   width: 100%;
   background-position: center;
   background-attachment: fixed;
