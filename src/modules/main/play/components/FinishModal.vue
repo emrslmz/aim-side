@@ -10,9 +10,9 @@
           <span class="valorant-font">{{ playData.gameData.point}}</span>
 
           <span style="font-size: 12px; writing-mode: tb-rl;">
-            <small class="c-bad" v-if="playData.gameData.point <= 50">Bad</small>
-            <small class="c-so-so" v-if="playData.gameData.point > 50 && playData.gameData.point <= 85">Meh</small>
-            <small class="c-success" v-else-if="playData.gameData.point > 85">SUPER</small>
+            <small class="c-bad" v-if="playData.gameData.point <= 90">Bad</small>
+            <small class="c-so-so" v-if="playData.gameData.point > 90 && playData.gameData.point <= 225">Meh</small>
+            <small class="c-success" v-else-if="playData.gameData.point > 225">SUPER</small>
           </span>
 
         </h6>
@@ -32,6 +32,9 @@
           </router-link>
         </div>
       </div>
+      <div class="text-center text-dark pt-2">
+<!--        <small>Close Sound</small>-->
+      </div>
     </div>
   </div>
 </template>
@@ -46,11 +49,16 @@ export default {
   methods: {
     reloadPage() {
       location.reload();
-    }
+    },
   },
   created() {
     this.$confetti.start();
-  }
+
+    // const congratulationsSound = new Audio('/assets/sound/congratulations_sound1.mp3');
+    // congratulationsSound.play();
+    // congratulationsSound.volume = 0.1;
+
+  },
 }
 </script>
 

@@ -6,7 +6,7 @@ const state = {
        },
        nowStart: {
            playing: false,  // now start run
-           playingTime: 124,  //2minutes
+           playingTime: 64,  //1minute
        },
        finishGame: {
          finished: false,
