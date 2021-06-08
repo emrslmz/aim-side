@@ -3,14 +3,16 @@
    <div >
      <top-bar />
    </div>
-    <div
+
+   <div
         class="d-flex flex-column justify-content-center game-frame align-items-center text-white"
         @click="clickCounter"
         :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  { 'background-image' : selectedBackground.style.substring(17)} , selectedSight.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedSight.folderName + '), auto'} : 'cursor: pointer;']">
 
       <div v-if="playData.beforeStart.startStatus === false">
-        <select-gun />
-
+        <transition name="bounce">
+          <select-gun />
+        </transition>
       </div>
 
       <div v-else>
@@ -35,6 +37,12 @@
         </div>
       </div>
 
+      <!-- Modal -->
+     <transition name="bounce">
+        <finish-modal v-if="playData.finishGame.finished === true" />
+     </transition>
+      <!-- /Modal -->
+
     </div>
    <div class="d-flex justify-content-center">
     <dead-bar />
@@ -51,6 +59,7 @@ export default {
     SelectGun: () => import('@/modules/main/play/components/SelectGun.vue'),
     TopBar: () => import('@/modules/main/play/components/layouts/TopBar.vue'),
     DeadBar: () => import('@/modules/main/play/components/layouts/DeadBar.vue'),
+    FinishModal: () => import('@/modules/main/play/components/FinishModal.vue'),
   },
   computed: {
     ...mapState('Play', ['playData']),
@@ -75,7 +84,7 @@ export default {
       this.changeItemPosition(itemId);
     },
     clickCounter() {
-      if (this.playData.nowStart.playing === true) {
+      if (this.playData.nowStart.playing === true && this.playData.finishGame.finished === false) {
         this.playData.gameData.click++;
       }
     }
@@ -146,142 +155,23 @@ export default {
   padding: 0 5px 0 5px;
 }
 
-
-
-
-
-
-.btn {
-  /* Clean style */
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  border: none;
-  background: none;
-  color: #ff4655;
-  cursor: pointer;
-  min-width: 300px;
-  /* Clean style */
-
-  --button-text-color: var(--background-color);
-  --button-text-color-hover: var(--button-background-color);
-  --border-color: #7D8082;
-  --button-background-color: #ece8e1;
-  --highlight-color: #ff4655;
-  --button-inner-border-color: transparent;
-  --button-bits-color: var(--background-color);
-  --button-bits-color-hover: var(--button-background-color);
-
-  position: relative;
-  padding: 8px;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 14px;
-  transition: all .15s ease;
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-.btn::before,
-.btn::after {
-  content: '';
-  display: block;
-  position: absolute;
-  right: 0; left: 0;
-  height: calc(50% - 5px);
-  border: 1px solid var(--border-color);
-  transition: all .15s ease;
-}
 
-.btn::before {
-  top: 0;
-  border-bottom-width: 0;
-}
-
-.btn::after {
-  bottom: 0;
-  border-top-width: 0;
-}
-
-.btn:active,
-.btn:focus {
-  outline: none;
-}
-
-.btn:active::before,
-.btn:active::after {
-  right: 3px;
-  left: 3px;
-}
-
-.btn:active::before {
-  top: 3px;
-}
-
-.btn:active::after {
-  bottom: 3px;
-}
-
-.valorant-button-inner {
-  position: relative;
-  display: block;
-  padding: 20px 30px;
-  background-color: var(--button-background-color);
-  overflow: hidden;
-  box-shadow: inset 0px 0px 0px 1px var(--button-inner-border-color);
-}
-
-.valorant-button-inner::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0; left: 0;
-  width: 2px;
-  height: 2px;
-  background-color: var(--button-bits-color);
-}
-
-.valorant-button-inner::after {
-  content: '';
-  display: block;
-  position: absolute;
-  right: 0; bottom: 0;
-  width: 4px;
-  height: 4px;
-  background-color: var(--button-bits-color);
-  transition: all .2s ease;
-}
-
-.valorant-button-slide {
-  display: block;
-  position: absolute;
-  top: 0; bottom: -1px; left: -8px;
-  width: 0;
-  background-color: var(--highlight-color);
-  transform: skew(-15deg);
-  transition: all .2s ease;
-}
-
-.valorant-button-content {
-  position: relative;
-}
-
-.btn:hover {
-  color: var(--button-text-color-hover);
-}
-
-.btn:hover .valorant-button-slide {
-  width: calc(100% + 15px);
-}
-
-.btn:hover .valorant-button-inner::after {
-  background-color: var(--button-bits-color-hover);
-}
-
-.valorant-button-light {
-  --button-background-color: var(--background-color);
-  --button-text-color: var(--highlight-color);
-  --button-inner-border-color: var(--highlight-color);
-  --button-text-color-hover: #ece8e1;
-  --button-bits-color-hover: #ece8e1;
-}
 </style>

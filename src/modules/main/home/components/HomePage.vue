@@ -9,7 +9,7 @@
 
 
         <div class="col-md-4 col-12 text-md-right text-center">
-          <router-link to="play">
+          <router-link to="/play">
             <button class="btn game-button"><i class="fas fa-play"></i> PLAY</button>
           </router-link>
         </div>
@@ -34,14 +34,15 @@
         </div>
         <div class="development flex-column px-2">
           <h1>
-            <i class="fab fa-chrome" v-if="browserData === 1"></i>
-            <i class="fab fa-safari" v-else-if="browserData === 2"></i>
-            <i class="fab fa-opera" v-else-if="browserData === 3"></i>
-            <i class="fab fa-firefox" v-else-if="browserData === 4"></i>
-            <i class="fab fa-edge" v-else-if="browserData === 5"></i>
-            <i class="fas fa-mobile" v-else-if="browserData === 6"></i>
-            <i class="fas fa-tablet" v-else-if="browserData === 7"></i>
+              <i class="fab fa-chrome" v-if="browserData === 1"></i>
+              <i class="fab fa-safari" v-else-if="browserData === 2"></i>
+              <i class="fab fa-opera" v-else-if="browserData === 3"></i>
+              <i class="fab fa-firefox" v-else-if="browserData === 4"></i>
+              <i class="fab fa-edge" v-else-if="browserData === 5"></i>
+              <i class="fas fa-mobile" v-else-if="browserData === 6"></i>
+              <i class="fas fa-tablet" v-else-if="browserData === 7"></i>
           </h1>
+
           <small class="mx-1"  v-if="browserData === 6 || browserData === 7"> Play in different devices!</small>
           <small v-else>Play in different browsers!</small>
         </div>
@@ -182,15 +183,6 @@ export default {
   top: .2em;
   color: #ff4040;
 }
-
-
-
-
-
-
-
-
-
 
 
 </style>

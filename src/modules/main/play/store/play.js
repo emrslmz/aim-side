@@ -8,6 +8,9 @@ const state = {
            playing: false,  // now start run
            playingTime: 124,  //2minutes
        },
+       finishGame: {
+         finished: false,
+       },
        gameData: {
            point: 0,
            kill: 0,
@@ -146,7 +149,7 @@ const mutations = {
           const itemColor = selectedItemColor.style;
           state.playData.selectedDifficulty.items.push({ itemId, coordinateX, coordinateY, itemWidth, itemHeight,itemColor });
       }
-        console.log(difficultyData);
+        // console.log(difficultyData);
     },
     SELECT_ITEM_SIZE(state, itemSizeType) {
       state.playData.selectedItemSize = state.playData.itemSizes.find(s => s.type === itemSizeType);
@@ -169,7 +172,7 @@ const mutations = {
     },
     SELECT_ITEM_COLOR(state, itemColorId) {
         state.playData.selectedItemColor = state.playData.itemColors.find(c => c.id === itemColorId);
-        console.log(state.playData.selectedItemColor);
+        // console.log(state.playData.selectedItemColor);
     }
 };
 
@@ -187,6 +190,10 @@ const actions = {
         setInterval(() => {
             if (data.nowStart.playingTime > 0) {
                 data.nowStart.playingTime--;
+            } else if (data.nowStart.playingTime === 0) {
+                data.finishGame.finished = true;
+                console.log("confetti");
+                data.selectedDifficulty.items = [];
             }
         }, 1000);
     },
