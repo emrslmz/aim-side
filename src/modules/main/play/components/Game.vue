@@ -6,7 +6,7 @@
     <div
         class="d-flex flex-column justify-content-center game-frame align-items-center text-white"
         @click="clickCounter"
-        :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  { 'background-image' : selectedBackground.style} , selectedSight.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedSight.folderName + '), auto'} : 'cursor: pointer;']">
+        :style="[selectedBackground.mode === 1 ? { 'background-image': 'url(/assets/images/img/backgrounds/' + selectedBackground.style } :  { 'background-image' : selectedBackground.style.substring(17)} , selectedSight.mode === 2 ? { 'cursor' : 'url(/assets/images/img/crossairs/'+ selectedSight.folderName + '), auto'} : 'cursor: pointer;']">
 
       <div v-if="playData.beforeStart.startStatus === false">
         <select-gun />
@@ -81,11 +81,11 @@ export default {
     }
   },
   created() {
-      if (localStorage.getItem("backgroundDataId") !== undefined) {
-        localStorage.setItem("backgroundDataId", '5');
+      if (localStorage.getItem("backgroundDataId") === undefined) {
+        localStorage.setItem("backgroundDataId", '14');
       }
 
-      if (localStorage.getItem("sightId") !== undefined) {
+      if (localStorage.getItem("sightId") === undefined) {
         localStorage.setItem("sightId", '0');
       }
 

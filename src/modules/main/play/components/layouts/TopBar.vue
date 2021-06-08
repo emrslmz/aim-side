@@ -85,8 +85,6 @@
                   {{ img.name }}
               </span>
             </small>
-
-
           </div>
       </div>
 

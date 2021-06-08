@@ -62,40 +62,48 @@ const state = {
             style: 'breeze_2.jpg',
         },
         {
-            name: 'Default',
+            name: 'Orange',
             id: 0,
             mode: 2,  // 1= picture, 2= gardient
-            style: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',  // 1= picture, 2= gardient
+            style: 'background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%)',  // 1= picture, 2= gardient
         },
         {
-            name: 'Pruple',
+            name: 'Blackberry',
             id: 5,
             mode: 2,
-            style: 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)',
+            style: 'background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)',
         },
         {
-            name: 'Dark',
+            name: 'Dark Chocolate',
             id: 12,
             mode: 2,
-            style: 'linear-gradient(to right, #434343 0%, black 100%)',
+            style: 'background-image: linear-gradient(to right, #434343 0%, black 100%)',
         },
         {
-            name: 'Blue',
+            name: 'Sky',
             id: 13,
             mode: 2,
-            style: 'linear-gradient(to top, #4481eb 0%, #04befe 100%)',
+            style: 'background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%)',
         },
         {
-            name: 'White',
+            name: 'Ice-Cream',
             id: 14,
             mode: 2,
-            style: 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
+            style: 'background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
         },
         {
-            name: 'Gray',
+            name: 'Gray Rabbit',
             id: 15,
             mode: 2,
-            style: 'linear-gradient(to right, #868f96 0%, #596164 100%)',
+            style: 'background-image: linear-gradient(to right, #868f96 0%, #596164 100%)',
+
+        },
+        {
+            name: 'Cherry',
+            id: 16,
+            mode: 2,
+            style: 'background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%)',
+
         },
     ]
 };
