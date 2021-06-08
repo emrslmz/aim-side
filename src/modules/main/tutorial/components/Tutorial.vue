@@ -6,10 +6,10 @@
         <h6 class="text-spacing5">Tutorial</h6>
       </div>
 
-      <div class="d-flex flex-column justify-content-center align-items-center">
+      <div class="d-md-flex flex-md-column justify-content-center align-items-center">
 
         <div class="d-flex flex-row align-items-center col-12 mt-5">
-          <div class="text-right col-6">
+          <div class="text-md-right col-6">
             <h1><i class="fas fa-ghost"></i></h1>
           </div>
           <div class="text-left col-6">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="d-flex flex-row align-items-end col-12 my-5">
-          <div class="text-right col-6">
+          <div class="text-md-right col-6">
             <h4>Personalization step</h4>
             <p>You can change the crosshairs if you want.</p>
             <p>You can change the map if you want.</p>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="d-flex flex-row align-items-end col-12 mb-5">
-          <div class="text-right col-6">
+          <div class="text-md-right col-6">
             <h1><i class="far fa-smile-beam"></i></h1>
           </div>
           <div class="text-left col-6">
@@ -45,12 +45,12 @@
           </div>
         </div>
 
-        <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-column justify-content-center text-center align-items-center">
             <h4>Didn't find what you were looking for?</h4>
             <small>Watch our more detailed tutorial video.</small>
 
           <div>
-            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pNWpvZj9OuI?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/pNWpvZj9OuI?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="d-flex flex-column justify-content-center align-items-center">
@@ -101,5 +101,16 @@ export default {
 
 iframe {
   border-radius: 20px;
+  max-width: 560px;
+  max-height: 315px;
+}
+
+@media screen and (min-width:560px) {
+
+  iframe {
+    width: 560px;
+    height: 315px;
+  }
+
 }
 </style>

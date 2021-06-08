@@ -81,11 +81,11 @@ export default {
     }
   },
   created() {
-      if (localStorage.getItem("backgroundDataId") === undefined) {
+      if (localStorage.getItem("backgroundDataId") === null) {
         localStorage.setItem("backgroundDataId", '14');
       }
 
-      if (localStorage.getItem("sightId") === undefined) {
+      if (localStorage.getItem("sightId") === null) {
         localStorage.setItem("sightId", '0');
       }
 

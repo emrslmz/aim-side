@@ -19,6 +19,15 @@ export default {
     TheFooter: () => import('@/modules/main/home/layouts/TheFooter.vue'),
     SideBarTop: () => import('@/modules/main/home/layouts/SideBarTop.vue'),
   },
+  created() {
+    if (localStorage.getItem("backgroundDataId") === null) {
+      localStorage.setItem("backgroundDataId", '14');
+    }
+
+    if (localStorage.getItem("sightId") === null) {
+      localStorage.setItem("sightId", '0');
+    }
+  }
 };
 </script>
 

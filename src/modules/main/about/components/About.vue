@@ -7,7 +7,7 @@
       </div>
       <div class="d-flex justify-content-center pt-5">
 
-        <div class=" d-flex col-4 flex-column">
+        <div class="d-flex col-md-4 col-12 flex-column">
           <div>
             <h4>About Aim Side</h4>
             <p>Aim Side is a development game available for free from almost any browser. You can get up to 99% improvement in all FPS games when used regularly.</p>

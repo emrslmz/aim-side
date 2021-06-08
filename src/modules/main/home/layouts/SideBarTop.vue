@@ -127,6 +127,12 @@
   flex-direction: column;
 }
 
+@media screen and (max-width:440px) {
+  .menu-box {
+    margin: 10px 0 0 0;
+  }
+}
+
 
 .menu-box:hover {
   transition: 0.4s;

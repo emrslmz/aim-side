@@ -17,7 +17,7 @@
 
     </div>
 
-    <div class="d-sm-flex flex-column  text-center pt-5">
+    <div class="d-sm-flex flex-column  text-center py-5">
       <div class="col-sm-12 d-sm-flex justify-content-around align-items-center px-sm-5">
 
         <div class="development flex-column">

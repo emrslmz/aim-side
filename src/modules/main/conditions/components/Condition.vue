@@ -6,7 +6,7 @@
        <h6 class="text-spacing5">Privacy & Terms</h6>
      </div>
      <div class="condition-card row pt-5">
-       <div class="col-6">
+       <div class="col-xl-6 col-12">
          <div>
            <h6 class="condition-title">AIM SIDE  Privacy Policy</h6>
            <p class="condition-content">Welcome to Sound AIR. Sound AIR provides a social online and mobile-enabled chat platform through its website (“Site”), Sound AIR app (“Application”) and related internet services (collectively, “Service (s)”). Service; operated by the Oyuncudefteri.com Company ("Company" or "we") for service users ("you"). This Privacy Policy sets out our policy regarding the information collected from those who visit the Site and use the Application and / or Services. Under the applicable legislation, Sound AIR Company is the "data controller" of personal data collected through the Services.</p>
@@ -21,7 +21,7 @@
            <p class="condition-content">Generally, we retain personal data for as long as it is linked to the purposes set out in this document. We may anonymize, delete or take other appropriate steps to destroy personal data. Copies of data created for purposes such as backup and business continuity may continue to exist for an additional period of time.</p>
          </div>
        </div>
-      <div class="col-6">
+      <div class="col-xl-6 col-12">
         <div>
           <h6 class="condition-title">LINKS TO OTHER WEB SITES</h6>
           <p class="condition-content">This Privacy Policy only applies to the Services. The Services may contain links to other websites that are not operated or controlled by us (“Third Party Sites”). The policies and procedures we describe here do not apply to Third Party Sites. Links on the Services do not imply that we endorse or review Third Party Sites. We recommend that you contact the sites directly to obtain information about the privacy policies of these sites.</p>
@@ -48,11 +48,12 @@
 }
 
 .condition-home  {
-  height: 85vh;
+  min-height: 85vh;
 }
 
 .condition-card {
-  width: 800px;
+  margin: 0 50px 40px 50px;
+  max-width: 800px;
   min-height:700px;
   box-shadow: 0 0 10px 2px #cecece;
   border-radius: 15px;

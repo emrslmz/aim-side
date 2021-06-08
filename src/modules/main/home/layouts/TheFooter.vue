@@ -52,7 +52,7 @@
   width: 100%;
   bottom: 0;
   left: 0;
-  height: 30vh;
+  height: 35vh;
   border-top: 5px solid #d42053;
   border-right: none;
   border-bottom: none;
