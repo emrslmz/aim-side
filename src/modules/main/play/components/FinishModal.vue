@@ -24,11 +24,11 @@
 
       <div class="d-flex justify-content-around align-items-center text-dark">
         <div>
-            <button class="btn custom-button custom-button-green mx-2" @click="reloadPage"><i class="fas fa-play"></i> PLAY</button>
+            <button class="btn custom-button custom-button-green mx-2" @click="reloadPage"><i class="fas fa-play"></i> PLAY AGAIN</button>
         </div>
         <div>
           <router-link to="/">
-            <button class="btn custom-button custom-button-blue mx-2"><i class="fas fa-play"></i> Home</button>
+            <button class="btn custom-button custom-button-blue mx-2" @click="stopAnimate"><i class="fas fa-home"></i> HOME</button>
           </router-link>
         </div>
       </div>
@@ -50,6 +50,9 @@ export default {
     reloadPage() {
       location.reload();
     },
+    stopAnimate() {
+      this.$confetti.stop();
+    }
   },
   created() {
     this.$confetti.start();
