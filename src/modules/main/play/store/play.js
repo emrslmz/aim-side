@@ -6,7 +6,7 @@ const state = {
        },
        nowStart: {
            playing: false,  // now start run
-           playingTime: 64,  //1minute
+           playingTime: 4,  //1minute
        },
        finishGame: {
          finished: false,
@@ -200,7 +200,7 @@ const actions = {
                 data.nowStart.playingTime--;
             } else if (data.nowStart.playingTime === 0) {
                 data.finishGame.finished = true;
-                console.log("confetti");
+                // console.log("confetti");
                 data.selectedDifficulty.items = [];
             }
         }, 1000);

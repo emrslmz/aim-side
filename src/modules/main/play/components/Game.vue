@@ -107,7 +107,7 @@ export default {
       this.playData.screenSize.screenX = screen.width;
       this.playData.screenSize.screenY = screen.height;
 
-      console.log(this.playData.screenSize);
+      // console.log(this.playData.screenSize);
   },
 };
 
