@@ -6,7 +6,7 @@
        <div class="custom-hr"></div>
      </div>
      <div class="d-flex justify-content-center align-items-center row">
-       <div class="d-flex flex-column justify-content-center align-items-between  text-dark"  v-for="(gun, index) in gunSounds" :key="index">
+       <div class="d-sm-flex flex-column justify-content-center align-items-between text-dark"  v-for="(gun, index) in gunSounds" :key="index">
          <img class="gun-picture" :src="'/assets/images/img/gun/' + gun.gunPic" @click="ready(gun)" :alt="gun.name" :title="gun.name" />
          <small>{{ gun.name }}</small>
        </div>
@@ -39,7 +39,8 @@ export default {
 
 <style scoped>
 .select-gun-frame {
-  width: 800px;
+  margin: 50px 30px 0 30px;
+  max-width: 800px;
   min-height: 300px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 15px;
@@ -70,6 +71,12 @@ export default {
   height: 50px;
   opacity: 0.7;
   transition: 0.5s;
+}
+
+@media screen and (max-width: 770px) {
+  .gun-picture {
+    height: 30px;
+  }
 }
 
 .gun-picture:hover {
