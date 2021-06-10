@@ -79,6 +79,14 @@ export default {
   user-select: none;
 }
 
+@media screen and (max-width: 760px) {
+  .modal-card {
+    width: 500px;
+  }
+}
+
+
+
 .congratulations-text {
   font-weight: bold;
   font-size: 36px;
@@ -117,7 +125,7 @@ export default {
 }
 
 
-.custom-button{
+.custom-button {
   font-weight: bold;
   background-color: lightgray;
   width: 200px;
@@ -159,5 +167,19 @@ export default {
   color: #007BFF;
 }
 
+
+@media screen and (max-width: 505px) {
+  .modal-card {
+    width: auto;
+  }
+
+  .custom-button {
+    width: 160px;
+  }
+
+  .congratulations-text {
+    font-size: 28px;
+  }
+}
 </style>
 

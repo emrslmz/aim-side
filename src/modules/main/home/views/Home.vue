@@ -15,9 +15,9 @@ export default {
   name: 'MainPage',
   components: {
     HomePage: () => import('@/modules/main/home/components/HomePage.vue'),
-    TheHeader: () => import('@/modules/main/home/layouts/TheHeader.vue'),
+    TheHeader: () => import('@/modules/main/home/layouts/OldTheHeader.vue'),
     TheFooter: () => import('@/modules/main/home/layouts/TheFooter.vue'),
-    SideBarTop: () => import('@/modules/main/home/layouts/SideBarTop.vue'),
+    SideBarTop: () => import('@/modules/main/home/layouts/TheHeader.vue'),
   },
   created() {
     if (localStorage.getItem("backgroundDataId") === null) {

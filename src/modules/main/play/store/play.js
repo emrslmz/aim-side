@@ -16,6 +16,10 @@ const state = {
            kill: 0,
            click: 0,
        },
+       screenSize: {
+           screenX: null,
+           screenY: null,
+       },
        selectedDifficulty: {},
        difficulty: [
            {
@@ -134,8 +138,8 @@ const mutations = {
       for (let a = 0; a < difficultyData.itemNumber; a++) {
 
           const itemId = a;
-          const coordinateX = Math.floor(Math.random() * 1700);
-          const coordinateY = Math.floor(Math.random() * 750);
+          const coordinateX = Math.floor(Math.random() * (state.playData.screenSize.screenX - 120)); //1920
+          const coordinateY = Math.floor(Math.random() * (state.playData.screenSize.screenY - 120)); //1080
 
           const itemWidth = selectedItemSizeType.width;
           const itemHeight = selectedItemSizeType.height;
@@ -157,8 +161,12 @@ const mutations = {
     CHANGE_ITEM_POSITION(state, itemId) {
       const item = state.playData.selectedDifficulty.items.find(i => i.itemId === itemId);
 
-      item.coordinateX = Math.floor(Math.random() * 1700);
-      item.coordinateY = Math.floor(Math.random() * 750);
+      // item.coordinateX = Math.floor(Math.random() * 1700);
+      // item.coordinateY = Math.floor(Math.random() * 750);
+
+        item.coordinateX = Math.floor(Math.random() * (state.playData.screenSize.screenX - 120));
+        item.coordinateY = Math.floor(Math.random() * (state.playData.screenSize.screenY - 120));
+
       item.itemColor = state.playData.selectedItemColor.style;
 
       if (state.playData.selectedItemSize.type === 3 ) {
@@ -192,7 +200,7 @@ const actions = {
                 data.nowStart.playingTime--;
             } else if (data.nowStart.playingTime === 0) {
                 data.finishGame.finished = true;
-                console.log("confetti");
+                // console.log("confetti");
                 data.selectedDifficulty.items = [];
             }
         }, 1000);
@@ -208,6 +216,9 @@ const actions = {
     },
     selectItemColor({ commit }, itemColorId) {
         commit('SELECT_ITEM_COLOR', itemColorId);
+    },
+    findScreenSize({ commit }, sizes) {
+        commit('FIND_SCREEN_SIZE', sizes);
     }
 };
 
