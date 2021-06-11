@@ -139,7 +139,7 @@ const mutations = {
 
           const itemId = a;
           const coordinateX = Math.floor(Math.random() * (state.playData.screenSize.screenX - 120)); //1920
-          const coordinateY = Math.floor(Math.random() * (state.playData.screenSize.screenY - 120)); //1080
+          const coordinateY = Math.floor(Math.random() * (state.playData.screenSize.screenY - 180)); //1080
 
           const itemWidth = selectedItemSizeType.width;
           const itemHeight = selectedItemSizeType.height;
@@ -165,7 +165,7 @@ const mutations = {
       // item.coordinateY = Math.floor(Math.random() * 750);
 
         item.coordinateX = Math.floor(Math.random() * (state.playData.screenSize.screenX - 120));
-        item.coordinateY = Math.floor(Math.random() * (state.playData.screenSize.screenY - 120));
+        item.coordinateY = Math.floor(Math.random() * (state.playData.screenSize.screenY - 180));
 
       item.itemColor = state.playData.selectedItemColor.style;
 
