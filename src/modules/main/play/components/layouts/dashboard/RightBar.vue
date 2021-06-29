@@ -218,4 +218,12 @@ export default {
 .dropdown-item:hover {
   background-color: #3ac089;
 }
+
+.custom-picture {
+  cursor: pointer;
+  width: auto;
+  height: 15px;
+  opacity: 0.7;
+  transition: 0.5s;
+}
 </style>
