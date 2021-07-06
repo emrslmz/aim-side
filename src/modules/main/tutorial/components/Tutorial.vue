@@ -50,7 +50,7 @@
             <small>Watch our more detailed tutorial video.</small>
 
           <div>
-            <iframe src="https://www.youtube-nocookie.com/embed/pNWpvZj9OuI?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/tLFPMG1JJIA?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="d-flex flex-column justify-content-center align-items-center">

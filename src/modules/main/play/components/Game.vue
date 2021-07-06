@@ -79,13 +79,14 @@ export default {
       this.playData.gameData.point += randomPoint;
       this.playData.gameData.kill += 1;
 
-      this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
 
       this.changeItemPosition(itemId);
     },
     clickCounter() {
       if (this.playData.nowStart.playing === true && this.playData.finishGame.finished === false) {
         this.playData.gameData.click++;
+        this.playSound({kill: this.playData.gameData.kill, gunData: this.selectedGun});
+
       }
     }
   },
